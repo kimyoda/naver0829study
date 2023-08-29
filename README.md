@@ -13,7 +13,15 @@ git-bash
 7. git push orign 브랜치명 - 원격저장소의 해당 브랜치에 소스 보내기
     - 반대로 원격 저장소의 수정된 내용을 가져올 경우
     - git pull origin 브랜치명
+7. git add(경고무시)
+8. git commit -m “파일 명”(공백이 있을 경우 “”을 붙여야 한다)
+9. git push origin main(push로 할 것)
 
+참고사항
+
+- [cat.REMD.md](http://cat.REMD.md)는 cat은 REMD.md 즉 내용을 보여주는 명령어
+- 원격저장소에서 저장했을 때는 항상 pull할 것
+  
 처음에 한번만 이메일과 유저명 확인
 git config--global user.name "[사용자명]"
 
