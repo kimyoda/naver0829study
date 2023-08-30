@@ -18,8 +18,8 @@ public class ExamEx8 {
 		int money = Integer.parseInt(args[0]);
 		int a = money/10000;
 		int b = (money % 10000)/ 1000;
-		int c = (money % 1000 / 100)% 100;
-		int d = (money % 100 / 10)% 10;
+		int c = (money % 1000 / 100);//% 100;
+		int d = (money % 100 / 10);//% 10;
 		int e = money% 10;
 		System.out.println("money: " + money+ "원");
 		System.out.println("만원짜리 "+ a +"장");
@@ -27,6 +27,13 @@ public class ExamEx8 {
 		System.out.println("백원짜리 "+ c +"개");
 		System.out.println("십원짜리 "+ d +"개");
 		System.out.println("일원짜리 "+ e +"개");
+		
+		
+		System.out.printf("만원짜리 %d장\n", a);
+		System.out.printf("천원짜리 %d장\n", b);
+		System.out.printf("백원짜리 %d개\n", c);
+		System.out.printf("십원짜리 %d개\n", d);
+		System.out.printf("일원짜리 %d개\n", e);
 	}
 
 }
