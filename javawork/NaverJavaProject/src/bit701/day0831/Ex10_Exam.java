@@ -1,5 +1,6 @@
 package bit701.day0831;
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Ex10_Exam {
@@ -21,25 +22,49 @@ public class Ex10_Exam {
 //5개 이상일때
 //5개 이하일 때
 //10프로 할인된 최종 금액출력
-	Scanner sc=new Scanner(System.in);
-	System.out.println("상풍명을 입력하세요");
-	String product = sc.nextLine();
+//선언
+	Scanner sc= new Scanner(System.in);
+	NumberFormat numFormat=NumberFormat.getInstance();
+	String sangpum="";
+	int su=0, dan=0, total=0;
+//입력
+	System.out.println("상품명");
+	sangpum=sc.nextLine();
+	System.out.println("수량");
+	su=sc.nextInt();
+	System.out.println("단가");
+	dan=sc.nextInt();
+	//계산
+	total=su*dan;
+//출력
+	System.out.println("총금액="+numFormat.format(total)+"원");
 	
-	System.out.println("수량:");
-	int num  = sc.nextInt();
-	
-	System.out.println("단가:");
-	int price = sc.nextInt();
-	
-	
-	int total = price*num;
-	System.out.println("총금액" + total + "원");
-	
-	
-	if(num>=5) {
-	System.out.println("5개 이상 10프로 할인된 금액:"+ (total - (total/10)));
+	//5개 이상 할인받는 조건 추가
+	if(su>=5)
+	{
+		total=(int)(total*0.9);
+		System.out.printf("5개 이상 10프로 할인된 금액: %d 원\n", total);
+		System.out.printf("5개 이상 10%% 할인된 금액: %s 원\n", numFormat.format(total));// printf에서 %를 출력하고 싶으면 %%를 붙이면 된다.
+	}
+		
+//	Scanner sc=new Scanner(System.in);
+//	System.out.println("상풍명을 입력하세요");
+//	String product = sc.nextLine();
+//	
+//	System.out.println("수량:");
+//	int num  = sc.nextInt();
+//	
+//	System.out.println("단가:");
+//	int price = sc.nextInt();
+//	
+//	
+//	int total = price*num;
+//	System.out.println("총금액" + total + "원");
+//	
+//	
+//	if(num>=5) {
+//	System.out.println("5개 이상 10프로 할인된 금액:"+ (total - (total/10)));
 //	System.out.println("5개 이상 10프로 할인된 금액:"+  원);
 			
-	}
 	}
 }
