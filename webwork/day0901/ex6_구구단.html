@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>2~9까지 구구단을 입력해보기</title>
 </head>
 <body>
     <!--
@@ -12,5 +12,23 @@
 
 
     -->
+    <!-- 입력 -->
+    <h1>2~9까지의 구구단</h1>
+    <script>
+        let number =prompt("2부터 9까지의 숫자를 입력하세요");
+        number = parseInt(number);
+
+ 
+
+        if(number>=2 && number<=9) {
+            document.write(`<h1>${number}단</h1>`);
+        for(let i=1;i<=9;i++){
+            let result = number *i; 
+            document.write(`${number}*${i}= ${result}<br>`);
+            }
+        }else{
+            document.write(`<img src="../mycar/mycar${number}.png">`)
+        }
+    </script>
 </body>
 </html>

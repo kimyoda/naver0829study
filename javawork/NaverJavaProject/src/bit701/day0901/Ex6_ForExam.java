@@ -27,11 +27,11 @@ Scanner sc=new Scanner(System.in);
 	System.out.println("구구단을 출력할 끝단 입력");
 	int end=sc.nextInt();
 	//start가 end보다 클 경우 두 변수의 값을 바꿔보자
-//	if(start>end) {
-//		int temp=start;
-//		start=end;
-//		end=temp;
-//	}
+	if(start>end) {
+		int temp=start;
+		start=end;
+		end=temp;
+	}
 	//제목 출력
 	for(int dan=start;dan<=end;dan++)
 	{

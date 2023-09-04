@@ -18,7 +18,7 @@ public class Ex5_ForExam {
 //		for(int a=1; a<=n; a++)
 //			sum+=a;
 //		//출력
-//		System.out.println("1부터"+n+"까지의 합은" +sum+"입니다"); 문제해답
+//		System.out.println("1부터"+n+"까지의 합은" +sum+"입니다"); 
 		
 		/*2. 구구단 숫자 2-9 사이의 숫자를 입력받은 후 범위를 벗어날 경우
 		 "잘못 입력하여 종료합니다"라고 종료!

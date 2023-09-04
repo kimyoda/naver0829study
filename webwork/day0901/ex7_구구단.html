@@ -11,5 +11,53 @@
             (가로방향-자바에서처럼)
             단 start가 end보다 클 경우 두 값을 서로 바꾼 후 출력하시오
     -->
+    <h1>구구단을 출력하시오</h1>
+    <script>
+        let start = prompt("start 값을 입력해주세요");
+        let end = prompt("end값을 입력해주세요");
+        start =parseInt(start);
+        end=parseInt(end);
+
+        if(start>end) {
+            let tmep=start;
+            start=end;
+            end=temp;
+        }//for 단을 하나 해서 해놓기
+        for(let dan=start;dan<=end;dan++)
+        {
+            document.write(`<span>&nbsp&nbsp&nbsp&nbsp&nbsp${dan}단&nbsp&nbsp&nbsp&nbsp&nbsp</span>`);
+        }
+        document.write(`<br>`);
+
+        for(let i=1;i<=9;i++){
+            for(let dan=start;dan<=end;dan++){
+                document.write(`<span>&nbsp${dan} x ${i} = ${dan*i}&nbsp</span>`);
+            }
+            document.write(`<br>`);
+        }
+        //밑은 다 날리고 구구단에 해당하는 dan을 넣어서 해보기
+        // for(let dan=start;dan<=end;dan++){
+        //     document.write(`<h2>${dan}단<h2>`);
+        // for(let i=1;i<=9;i++){
+        //     let result = dan * i;
+        //     document.write(`<span>${dan} x ${i} = ${result}&nbsp;&nbsp;&nbsp;</span>`);
+        // }
+        //     document.write(`<br>`);
+        // }    
+        // // document.write("<h2>");
+        // //     for(let dan = start;dan <= end; dan++){
+        // //         doc1
+        // document.write(`<h2>${dan}단<h2>`);
+        // }
+
+        // for (let i = 1; i <= 9; i++) {
+        //     document.write(`<h2>${i}단</h2>`);
+        //     for (let dan = start; dan <= end; dan++) {
+        //         let result = dan * i;
+        //         document.write(`<span>${dan} x ${i} = ${result}&nbsp;&nbsp;&nbsp;</span>`);
+        //     }
+        //     document.write("<br>");
+        // }
+    </script>
 </body>
 </html>

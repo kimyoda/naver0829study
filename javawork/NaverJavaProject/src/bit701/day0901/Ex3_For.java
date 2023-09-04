@@ -9,15 +9,15 @@ public class Ex3_For {
 		}//for문은 지역변수라 벗어나는 순간 값이 적용되지않는다.
 		System.out.println("=".repeat(30));//"="을 30번 반복하겠다
 		for(int a=1;a<=10;a++)
-			System.out.printf("%3d", a);
+		System.out.printf("%3d", a);
 		System.out.println();
 		System.out.println("=".repeat(30));//"="을 30번 반복
 		for(int a=1;a<=20;a+=3)//1,4,7,10
-			System.out.printf("%3d", a);
+		System.out.printf("%3d", a);
 		System.out.println();
 		System.out.println("=".repeat(30));//"="을 30번 반복
 		for(int a=10;a>=1;a--)//1,4,7,10
-			System.out.printf("%3d", a);
+		System.out.printf("%3d", a);
 		System.out.println();
 		System.out.println("=".repeat(30));//"="을 30번 반복
 		
