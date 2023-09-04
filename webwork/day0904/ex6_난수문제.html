@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <input type="button" value="새로운 난수 발생하기" id="btnrnd">
+  <input type="text" id="txtmsg">
+  <input type="button" id="btn1" value="읽기">
+  
+  <div id="msg"></div>
+  <script>
+    let rnd;//난수를 구할 변수
+    //난수버튼 이벤트
+    document.getElementById("btnrnd").onclick=function(){
+        //1~100사이의 난수 구하기
+        rnd=parseInt((Math.random()*100))+1;//자바의 int는 자바스크립트에서는 parseInt쓰기
+        //console에 출력
+        console.log(rnd);
+    }
+    //난수 비교해서 결과출력
+    let t = document.getElementById("txtmsg");
+    let b = document.getElementById("btn1");
+    let msg = document.getElementById("msg");
+
+        btn1.onclick=function(){
+            //입력한 문자열을 가져온다
+        let data=t.value;
+        msg.innerHTML+="<br><u>"+data+"</u>";//+=: 기존데이타에 추가로 출력한다
+        t.value="";
+        t.focus();
+
+         // if문 만들기 
+    let num = parseInt();   
+    if (isNaN(num)) {
+     msg.innerHTML += "<br>올바른 숫자를 입력하세요.";
+    if(btnrnd>rnd)
+    document.write(""+btnrnd+"보다 작습니다");
+    else if(btnrnd<rnd)
+    document.write(""+btnrnd+"보다 큽니다");
+    else{
+        document.write("정답입니다! ("+rnd+")");
+        }
+    }
+}
+      
+
+   
+    //태그 일단 만들기
+    //난수생성버튼
+    //입력칸
+    //50보다~작거나 크다
+    // ing 1~15그림변환
+  </script>
+</body>
+</html>
