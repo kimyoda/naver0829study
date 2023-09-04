@@ -13,7 +13,7 @@ public class Ex4_Random {
 		}
 		System.out.println("=".repeat(30));
 		for(int i=0;i<5;i++) {
-			int n=r.nextInt(100)+1;//0~9사이의 난수발생
+			int n=r.nextInt(100)+1;//1~100사이의 난수발생
 			System.out.println(n);
 	}
 		System.out.println("=".repeat(30));
