@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
+
+    <style>
+        div#msg{
+            font-family: 'Gamja Flower';
+            font-size: 30px;
+            color:blue;
+        }
+    </style>
 </head>
 <body>
   <input type="button" value="새로운 난수 발생하기" id="btnrnd">
+  <br>
+
   <input type="text" id="txtmsg">
   <input type="button" id="btn1" value="읽기">
   
-  <div id="msg"></div>
+  <div id="msg">메세지를 입력해주세요</div>
+  <img id="pic" src="" alt="" width="500">
+
   <script>
     let rnd;//난수를 구할 변수
     //난수버튼 이벤트
@@ -24,8 +38,9 @@
     let t = document.getElementById("txtmsg");
     let b = document.getElementById("btn1");
     let msg = document.getElementById("msg");
+    let pic = document.getElementById("pic");
 
-        btn1.onclick=function(){
+        b.onclick=function(){
             //입력한 문자열을 가져온다
         let data=t.value;
         msg.innerHTML+="<br><u>"+data+"</u>";//+=: 기존데이타에 추가로 출력한다
@@ -33,18 +48,35 @@
         t.focus();
 
          // if문 만들기 
-    let num = parseInt();   
-    if (isNaN(num)) {
-     msg.innerHTML += "<br>올바른 숫자를 입력하세요.";
-    if(btnrnd>rnd)
-    document.write(""+btnrnd+"보다 작습니다");
-    else if(btnrnd<rnd)
-    document.write(""+btnrnd+"보다 큽니다");
-    else{
-        document.write("정답입니다! ("+rnd+")");
-        }
+   
+    if (data>rnd) {
+     msg.innerHTML = data+"보다 작습니다";
+    } else if(data<rnd){
+    msg.innerHTML = data+"보다 큽니다";
+
+    }else {
+        msg.innerHTML = "정답입니다";
+        let idx = 1;
+        setInterval(function(){
+            pic.setAttribute("src",`../mycar/mycar${idx}.png`);
+            idx++;
+            if(idx>15){
+                idx = 1;
+            }
+
+        },1000);
+
+
+
+
+
+
     }
-}
+
+
+    }
+
+
       
 
    
