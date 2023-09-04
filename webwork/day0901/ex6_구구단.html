@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2~9까지 구구단을 입력해보기</title>
+    <style>
+        h3.title{
+            color : blueviolet;
+            background-color : aquamarine;
+            width: 300px;
+            padding-left: 150px/*태그 안쪽 여백*/
+        }
+
+        h4{
+            color: palevioletred;
+            font-family : 'Comic Sans MS';
+            margin-left : 100px;/*태그 바깥쪽 여백*/
+        }    
+    </style>
 </head>
 <body>
     <!--
@@ -13,8 +27,7 @@
 
     -->
     <!-- 입력 -->
-    <h1>2~9까지의 구구단</h1>
-    <script>
+    <!-- <script>
         let number =prompt("2부터 9까지의 숫자를 입력하세요");
         number = parseInt(number);
 
@@ -29,6 +42,21 @@
         }else{
             document.write(`<img src="../mycar/mycar${number}.png">`)
         }
+    </script> --> 
+    <h2>구구단 입력받아 출력하기</h2>
+    <script>
+        let dan=Number(prompt("출력할 구구단을 입력하세요"));
+        console.log(typeof(dan));
+        if(dan<2 || dan>9) {
+            document.write(`img< alt='사진' src='..//mycar/mycar7.png' width=200>`);
+        } else {
+            let s="<h3 class='title'> **" +dan+ "단 **</h3><br>";
+            for(let i=1; i<=9; i++)  {
+                s+=`<h4>${dan} x ${i} = ${dan*i}<br></h4>`; 
+            } 
+            document.write(s);
+        }
+        // * 
     </script>
 </body>
 </html>
