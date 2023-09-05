@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
+
+    <style>
+        #buttons{
+            margin-left: 30px;
+            margin-bottom: 20px;
+        
+        }
+
+        #buttons button{
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        #photo{
+            border: 10px groove gold;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!--3개의 버튼, 점점작게, 점점크게, 랜덤
+    점점작게: 사진이 5px씩 줄어든다(50보다 클 경우에만 변경)
+    점점크게: 사진이 5px씩 커진다(600px보다 작을경우에만 변경)
+    랜덤:1~20 사이 난수를 구한 후 해당 사진으로 변경하기
+    -->
+
+    <div id="buttons">
+        <button type="button" id="btnmius">-</button>
+        <button type="button" id="btnplus">+</button>
+        <button type="button" id="btnrnd">%</button>
+    <img src="../연예인사진/12.jpg" style="width: 300px;" id="photo">
+       
+
+    </div>  
+    <script>
+        document.getElementById("btnplus").onclick=function(){
+        //현재 글꼴의 크기를 얻어보자
+        let m=document.getElementById("photo");
+        // alert(m.style.fontSize);
+        let fs=parseInt(m.style.width,10);//10진수로 숫자부분만 가져온다
+         // alert(fs);//30
+            
+         if(fs<600){
+              fs+=5;
+              console.log(fs);
+              m.style.width=fs+"px";
+            }
+        }
+        document.getElementById("btnmius").onclick=function(){
+            let m=document.getElementById("photo");
+            let fs=parseInt(m.style.width,10)
+            if(fs>50){
+                fs-=5;
+                console.log(fs);
+                m.style.width=fs+"px";
+            }
+
+
+        }
+        document.getElementById("btnrnd").onclick = function(){
+            let rnd=parseInt((Math.random()*20))+1;
+            p.setAttribute("src",`../연예인사진/${rnd}.jpg`);     
+           }
+    </script>
+</body>
+</html>
