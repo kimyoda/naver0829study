@@ -14,8 +14,8 @@
         }
 
         #buttons button{
-            margin-left: 30px;
-            margin-bottom: 20px;
+            width: 80px;
+            height: 50px;
         }
 
         #photo{
@@ -29,23 +29,22 @@
     <!--3개의 버튼, 점점작게, 점점크게, 랜덤
     점점작게: 사진이 5px씩 줄어든다(50보다 클 경우에만 변경)
     점점크게: 사진이 5px씩 커진다(600px보다 작을경우에만 변경)
-    랜덤:1~20 사이 난수를 구한 후 해당 사진으로 변경하기
+    랜덤:1~20 사이 난수를 구한 후 해당 사진으로 변경하기 수정하기
     -->
 
     <div id="buttons">
         <button type="button" id="btnmius">-</button>
         <button type="button" id="btnplus">+</button>
         <button type="button" id="btnrnd">%</button>
-    <img src="../연예인사진/12.jpg" style="width: 300px;" id="photo">
-       
-
     </div>  
+    <img src="../연예인사진/12.jpg" style="width: 100px;" id="photo">
+
     <script>
         document.getElementById("btnplus").onclick=function(){
         //현재 글꼴의 크기를 얻어보자
         let m=document.getElementById("photo");
         // alert(m.style.fontSize);
-        let fs=parseInt(m.style.width,10);//10진수로 숫자부분만 가져온다
+        let fs=parseInt(m.style.width);
          // alert(fs);//30
             
          if(fs<600){
@@ -56,7 +55,7 @@
         }
         document.getElementById("btnmius").onclick=function(){
             let m=document.getElementById("photo");
-            let fs=parseInt(m.style.width,10)
+            let fs=parseInt(m.style.width)
             if(fs>50){
                 fs-=5;
                 console.log(fs);
@@ -66,8 +65,9 @@
 
         }
         document.getElementById("btnrnd").onclick = function(){
+            let m=document.getElementById("photo");
             let rnd=parseInt((Math.random()*20))+1;
-            p.setAttribute("src",`../연예인사진/${rnd}.jpg`);     
+            m.setAttribute("src",`../연예인사진/${rnd}.jpg`);     
            }
     </script>
 </body>
