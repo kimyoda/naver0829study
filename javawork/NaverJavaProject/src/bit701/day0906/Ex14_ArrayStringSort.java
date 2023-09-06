@@ -9,7 +9,7 @@ public class Ex14_ArrayStringSort {
 		for(int i=0; i<names.length-1; i++) {
 			for(int j = i+1; j<names.length; j++) {
 				//a.compareTo(b) : a가 b보다 클 경우 무조건 양수값이 나온다
-				if(names[i].compareTo(names[j])<0) {//오름차순 정렬, 부등호를 바꾼 즉 0보다 작으면 내림차순 정렬
+				if(names[i].compareTo(names[j])>0) {//오름차순 정렬, 부등호를 바꾼 즉 0보다 작으면 내림차순 정렬
 					String temp = names[i];
 					names[i] = names[j];
 					names[j] = temp;

@@ -78,29 +78,11 @@ public class Ex16_Lotto {
 //				System.out.println();
 //			}
 //		}
-		//		for(int n:lotto) {
-		//			System.out.println(n);
-		//		}
+
 		//		
 
 		//		
-		//		Loop:
-		//		for(int i=0; i<data.length; i++) {
-		//			data[i] = r.nextInt(45)+1;
-		//			//중복처리 - 같은 숫자가 있을경우 다시 발생
-		//			for(int j=0; j<i; j++) {
-		//				if(data[i]==data[j]) {
-		//					i--;
-		//					continue Loop;
-		//				}
-		//			}
-		//		}
-		//		for(int i=0; i<data.length; i++) {
-		//			System.out.printf("%4d", data[i]);
-		//			if((i+1)%6==0) {
-		//				System.out.println();
-		//			}
-		//		}
+
 	}
 
 }

@@ -63,7 +63,7 @@ public class Ex11_ArrayRankinput {
 		String []names = new String[4];
 		int []score = new int[4];
 		int []rank = new int[4];
-		
+
 		//입력
 		for(int i=0; i<names.length; i++) {
 			System.out.println(i+"번 이름:");
