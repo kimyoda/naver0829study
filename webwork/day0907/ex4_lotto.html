@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        1. 데이터클래스
+        2. 디자인 따라서
+        3. 실행 횟수도 나오게
+        */
+        body {
+            font-family: 'Jua';
+            border-radius: 50px pink;
+            text-align: center;
+            line-height: 100px;
+            font-size: 30px;
+            line-height: 50px;
+            margin: 5px;
+            background-color: aqua;
+
+        }
+        #time{
+            font-size: 25px;
+            font-family: 'Comic Sans MS';
+            color: gray;
+            position:absolute;
+            left: 220px;
+            width: 700px;
+            height: 200px;
+            text-align: right;
+            line-height: 10px;/*한줄일 경우 행높이를 height 하고 같은 값을 주면 세로방향 가운데온다*/
+        }
+
+
+        #num span:first-child{
+            margin-bottom: 40px
+            font-size: 40px;
+            font-family: 'Jua';
+            color: blue;
+
+        }
+        #num span:last-child {
+            margin-bottom: 40px
+            font-size: 40px;
+            font-family: 'Jua';
+            color: black; /* 마지막 자식 요소(회) 검은색 */
+        }
+        .box {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        background-color: aqua;
+        border-radius: 50%;
+        margin: 10px;
+        line-height: 80px;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    button {
+        border-radius: 50px;
+
+    }
+    </style>
+    <script>
+        let box = document.querySelectorAll(".box");
+
+        let lotto = new Array(6);
+        window.onload=function(){
+            //여러개의 class 요소들을 배열변수로 얻는다
+            let box=document.querySelectorAll("div.box");
+            // console.log(lotto.length);
+            // for(let i=0; i<lotto.length; i++){
+            //     box[i].innerHTML=parseInt(Math.random()*10);
+                
+            // }
+            for(let i=0; i<lotto.length; i++) {
+                lotto[i]=parseInt(Math.random()*45)+1;
+                 for(let j=0; j<i; j++){
+                    if(lotto[i]==lotto[j]){
+                       i--;
+                       continue;//반복문을 빠져나간다
+                    }
+                }
+            }
+
+        //바깥문
+        //중복변수 제거 값
+        for(let i=0; i<lotto.length-1; i++){
+            for(let j=i+1; j<lotto.length; j++) {
+                if(lotto[i]>lotto[j]) {
+                    let temp = lotto[i];
+                    lotto[i] = lotto[j]
+                    lotto[j] = temp;
+                }
+            }
+        }//출력
+        for (let i = 0; i < box.length; i++) {
+        box[i].innerHTML = lotto[i];
+        }
+    }
+
+
+    </script>
+</head>
+<body>
+    <div id="num"><span>1245</span><span>회</span></div>
+    <span id="time">xxxx-xx-xx</span>    
+    <div class = "box"></div>
+    <div class = "box"></div>
+    <div class = "box"></div>
+    <div class = "box"></div>
+    <div class = "box"></div>
+    <div class = "box"></div>
+    <button type="button" id="btnrandom">로또 숫자 구하기</button>
+    <script>
+        //날짜출력
+        init_time();
+
+        // 1초마다 갱신
+        setInterval(function () {
+        init_time();
+        }, 1000);
+        //일반 사용자 함수
+        function init_time() {
+            let time =document.getElementById("time");
+            let date=new Date();
+            let y=date.getFullYear();
+            let m=date.getMonth()+1;
+            let d=date.getDate();
+
+            m = (m < 10) ? `0${m}` : m;
+            d = (d < 10) ? `0${d}` : d;
+
+            time.innerHTML=`${y}-${m}-${d}`;
+        }
+        
+        document.getElementById("btnrandom").onclick=function(){
+                console.log("onclick called");
+                let box = document.querySelectorAll(".box");
+
+        let lotto = new Array(6);
+
+                for(let i=0; i<lotto.length; i++) {
+                   lotto[i]=parseInt(Math.random()*45)+1;
+                     for(let j=0; j<i; j++){
+                        if(lotto[i]==lotto[j]){
+                           i--;
+                           continue;//반복문을 빠져나간다
+                        }
+                    }
+                }
+
+        //바깥문
+        //중복변수 제거 값
+        for(let i=0; i<lotto.length-1; i++){
+            for(let j=i+1; j<lotto.length; j++) {
+                if(lotto[i]>lotto[j]) {
+                    let temp = lotto[i];
+                    lotto[i] = lotto[j]
+                    lotto[j] = temp;
+                }
+            }
+        }
+
+        for (let i = 0; i < box.length; i++) {
+            box[i].innerHTML = lotto[i];
+        }
+};
+
+    </script>
+</body>
+</html>
