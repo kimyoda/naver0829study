@@ -8,15 +8,17 @@ class Student {
 	private int score;
 	
 	Student(){
-		name = "";
-		birthYear = 2000;
-		score = 50;
+		this("이효리", 2000, 50);
+//		name = "";
+//		birthYear = 2000;
+//		score = 50;
 	}
 	
 	Student(String name){
-		this.name = name;
-		birthYear = 2000;
-		score = 50;
+		this(name, 2000, 50);
+//		this.name = name;
+//		birthYear = 2000;
+//		score = 50;
 	}
 	
 	Student(String name, int birthYear, int score){

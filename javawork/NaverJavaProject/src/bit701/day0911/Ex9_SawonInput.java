@@ -20,7 +20,7 @@ public class Ex9_SawonInput {
 			System.out.println("\t가족수는?");
 			int familysu = Integer.parseInt(sc.nextLine()); 
 			
-			//개체 생성
+			//객체 생성
 			sa[i] = new sawon(name, gibon, sudang, familysu);
 		}
 		//개
