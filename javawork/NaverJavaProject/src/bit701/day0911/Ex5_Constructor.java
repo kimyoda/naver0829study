@@ -28,7 +28,7 @@ public class Ex5_Constructor {
 		
 		Car2 car1 = Car2.getInstance();
 //		System.out.println(car1.toString());
-		System.out.println(car1);
+		System.out.println(car1);//toString 메서드는 자동호출
 	}
 
 }
