@@ -3,6 +3,7 @@ package bit701.day0912;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -23,9 +24,9 @@ public class Ex3_FileBankRead {
 		try {
 			fr = new FileReader(BANK_FILE);
 			br = new BufferedReader(fr);
-			
+
 			while(true) {
-				
+
 				String accountNo = br.readLine();
 				if(accountNo==null) {
 					break;
@@ -37,7 +38,7 @@ public class Ex3_FileBankRead {
 				//count 번지의 배열에 담는다
 				account[count] = new Account(accountNo, accountName, money);
 				count++;
-				
+
 			}
 			System.out.println("총"+ count + "개의 계좌를 읽음!");
 		} catch (FileNotFoundException e) {
@@ -99,6 +100,42 @@ public class Ex3_FileBankRead {
 			System.out.println(accountNo + "계좌가 없네요!!");
 		}
 	}
+	
+	//계좌추가시 호출될 메서드
+	public void addAcount(String accountNo, String accountName, int money) {
+		if(count==account.length) {
+			System.out.println("이미 계좌가 찼어요. 삭제후 다시 추가하세요");
+		}
+		//같은계좌가 있는 지 일단 파악하기
+		boolean find = false;
+		for(int i = 0; i<count; i++) {
+			if(account[i].isAccount(accountNo)) {
+				find = true;
+				break;
+			}
+			
+		}
+		if(find) {
+			System.out.println(accountNo + "계좌는 이미 존재합니다");
+		} else {
+			//count 번지에 생성자를 통해서 데이타 전달
+			account[count] = new Account(accountNo, accountName, money);
+			count++;
+			System.out.println(accountNo+ "계좌를 추가했습니다");
+		}
+	}
+	//종료 시 배열의 내용을 파일에 저장할 메서드
+	public void accountFileSave() throws IOException {
+		FileWriter fw = null;
+		fw = new FileWriter(BANK_FILE);
+		for(int i=0; i<count; i++) {
+			fw.write(account[i].getAccountNo()+"\t");
+			fw.write(account[i].getAccountName()+"\t");
+			fw.write(account[i].getMoney()+"\t");
+		}
+		System.out.println("배열의 계좌정보를 파일에 저장했습니다!");
+		fw.close();
+	}
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -109,12 +146,22 @@ public class Ex3_FileBankRead {
 		Scanner sc = new Scanner(System.in);
 		Exit: 
 			while(true) {
-				System.out.println("1.계좌추가 2.입금 3.출금 4. 종료");
+				System.out.println("1.계좌추가 2.입금 3.출금 4. 저장&종료");
 				System.out.println("선택>");
 				int num=Integer.parseInt(sc.nextLine());
 				switch(num) {
 				case 1: {
-
+					//추가할 계좌정보 입력하기
+					System.out.println("추가할 계좌번호는?");
+					String accountNo = sc.nextLine();
+					System.out.println("예금주는?");
+					String accountName = sc.nextLine();
+					System.out.println("초기 입금액은?");
+					int money = Integer.parseInt(sc.nextLine());
+					
+					//추가할 메서드 호출
+					ex.addAcount(accountNo, accountName, money);
+					ex.accountList();
 					break;
 				}
 				case 2: {//입금
@@ -141,7 +188,7 @@ public class Ex3_FileBankRead {
 				}
 
 				default :
-
+					ex.accountFileSave();//배열내용을 파일에 저장하기
 					System.out.println("파일 저장후 종료합니다");
 					break Exit;//while문을 빠져나간다
 				}//switch 닫는
