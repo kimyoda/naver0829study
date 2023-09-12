@@ -15,7 +15,7 @@ public class Book_BankApplication {
 			System.out.println("1.계좌생성 | 2.계좌목록 | 3. 예금 | 4.출금 | 5.종료");
 			System.out.println("-".repeat(60));
 			System.out.println("선택>");
-			int num=Integer.parseInt(sc.nextLine());
+			int num = Integer.parseInt(sc.nextLine());
 			if(num==5) {
 				System.out.println("프로그램 종료!");
 				break;
