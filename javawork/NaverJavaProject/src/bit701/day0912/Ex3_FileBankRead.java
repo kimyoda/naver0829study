@@ -52,6 +52,7 @@ public class Ex3_FileBankRead {
 		System.out.println("-".repeat(30));
 		System.out.println("  계좌 목록");
 		System.out.println("-".repeat(30));
+		System.out.println();
 		System.out.println("계좌번호 계좌명\t잔액");
 		System.out.println("-".repeat(40));
 	}
@@ -95,7 +96,7 @@ public class Ex3_FileBankRead {
 			}
 		}
 		if(find) {
-			System.out.println(accountNo + "계좌에" + money + "원을 입금했어요");
+			System.out.println(accountNo + "계좌에" + money + "원을 출금했어요");
 		} else {
 			System.out.println(accountNo + "계좌가 없네요!!");
 		}
@@ -129,9 +130,9 @@ public class Ex3_FileBankRead {
 		FileWriter fw = null;
 		fw = new FileWriter(BANK_FILE);
 		for(int i=0; i<count; i++) {
-			fw.write(account[i].getAccountNo()+"\t");
-			fw.write(account[i].getAccountName()+"\t");
-			fw.write(account[i].getMoney()+"\t");
+			fw.write(account[i].getAccountNo()+"\n");
+			fw.write(account[i].getAccountName()+"\n");
+			fw.write(account[i].getMoney()+"\n");
 		}
 		System.out.println("배열의 계좌정보를 파일에 저장했습니다!");
 		fw.close();
