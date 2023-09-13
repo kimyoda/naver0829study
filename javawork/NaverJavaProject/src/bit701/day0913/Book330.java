@@ -4,7 +4,7 @@ package bit701.day0913;
 //무분별한 자식 클래스 생성을 막기 위한 기능
 sealed class Person permits Employee, Manager {//Employee, Manager 두 개의 서브 클래스만 허용
 	
-	public String anme;
+	public String name;
 	
 	public void work() {
 		System.out.println("하는 일이 결정되지 않았습니다");
@@ -38,6 +38,7 @@ public class Book330 {
 		System.out.println();
 		Employee e = new Employee();
 		e.work();
+		System.out.println();
 		Manager m = new Manager();
 		m.work();
 		System.out.println();
