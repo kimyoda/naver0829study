@@ -45,7 +45,7 @@ class Television implements RemoteControl{
 		} else {
 			this.volume = volume;
 		}
-		System.out.println("현재 볼륨은 "  + volume + "입니다");//여기서 volume일때 매개변수, this가 붙으면 필드에 값 저장한 volume
+		System.out.println("현재 볼륨은 "  + this.volume + "입니다");//여기서 volume일때 매개변수, this가 붙으면 필드에 값 저장한 volume
 	}
 
 }
