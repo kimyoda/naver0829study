@@ -50,15 +50,29 @@ public class Ex5_ArrayButton extends JFrame {
 		});//여기서 클래스를 구현
 		
 	}
+	//배열 버튼 이벤트를 위한 내부클래스
+	class MyButton implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			for(int i = 0; i<btn.length; i++) {
+				if(e.getSource()==btn[i]) {
+					Ex5_ArrayButton.this.getContentPane().setBackground(buttonColor[i]);
+				}
+			}
+		}
+	}
 
 	
 	private void setDesign() {
-		//레이아웃 변경
 		this.setLayout(new FlowLayout());//순서대로 나열
 		for(int i=0; i<btn.length; i++) {
 			btn[i] = new JButton(buttonTitle[i]);
 			btn[i].setBackground(buttonColor[i]);
 			this.add(btn[i]);
+			
+			//버튼 이벤트 발생
+			btn[i].addActionListener(new MyButton());
 		}
 	}
 
