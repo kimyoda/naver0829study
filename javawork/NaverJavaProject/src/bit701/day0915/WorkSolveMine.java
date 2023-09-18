@@ -79,23 +79,6 @@ public class WorkSolveMine extends JFrame {
 	}
 
 
-	//이미지 오버라이드
-	//	@Override
-	//	public void paint(Graphics g) {//paint는 처음시작시 자동호출, 그리고 프레임 크기변경 시에도 자동호출이다. 바꿀려면 호출해줘야한다.
-	//		// TODO Auto-generated method stub
-	//		super.paint(g);
-	//
-	//		//System.out.println(image.getWidth(this));
-	//		if(image.getWidth(this)>=200) {				
-	//			g.drawImage(image, 70, 10, 370, 450, this);
-	//
-	//		} else {//300미만 너비를 가진 이미지는 원래 사이즈대로 출력
-	//			g.drawImage(image, 60, 10, this);
-	//
-	//		}
-	//	}
-
-
 	private void setDesign() {
 		// TODO Auto-generated method stub
 		//자바에서 제공하는 레이아웃을 안쓰고 직접 위치지정을 할 경우
