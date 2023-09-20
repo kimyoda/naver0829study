@@ -17,11 +17,11 @@ public class Ex1_Book697_Lambda {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		action((x, y)-> {
-			int result = x+y;
+			int result = x + y;
 			System.out.println("add result = " + result);
 		});
 		action((x,y) -> {
-			int result = x-y;
+			int result = x - y;
 			System.out.println("sub result = " + result);
 		});
 

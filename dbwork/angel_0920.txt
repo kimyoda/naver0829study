@@ -1,0 +1,132 @@
+--angel 계정 연습
+--전체 시퀀스 ㅡ조회
+select * from seq;
+--sequance 생성
+create SEQUENCE seq1 start with 1 INCREMENT by 1; --1부터 1씩 증가되는 시퀀스 생성
+create SEQUENCE seq2 start with 5 INCREMENT by 3 nocache; --5부터 3씩증가, cache값은 0
+create SEQUENCE seq3 maxvalue 100 nocache; --start with와 increment 생략시 1로 초기값 지정
+
+--값 발생시키기
+SELECT seq1.nextval,seq2.nextval,seq3.nextval FROM dual;
+
+
+--시퀀스 제거
+drop SEQUENCE seq1;
+drop SEQUENCE seq2;
+drop SEQUENCE seq3;
+
+--새로운 시퀀스 하나 생성
+create SEQUENCE seq_test nocache;
+
+--table 생성
+create table test(
+    num number(3) primary key, 
+    name varchar2(20) not null, 
+    blood char(2) default 'A', 
+    weight number(5, 2),
+    birthday date);
+    
+--데이타 추가
+--일부데이터만 넣은 경우 컬럼명을 반드시 표기한다
+insert into test (num, name) values (seq_test.nextval,'캔디');
+
+--순서대로 모든 컬럼값을 넣는경우 컬럼명 생략 가능
+insert into test values (seq_test.nextval,'캐서린','AB',67.89,sysdate);
+
+--제약조건에 안맞는 경우 오류 확인
+insert into test (num, blood) values (seq_test.nextval,'0');
+insert into test (num, name, blood) values (2,'Lee','0');
+
+--제대로 된 데이타 3개정도만 추가하기
+insert into test values (seq_test.nextval,'강호동','B',78.9,'2000-10-10');
+insert into test values (seq_test.nextval,'유재석','A',76.45,'1979-12-25');
+insert into test values (seq_test.nextval,'이영자','O',77.77,'1969-09-09');
+
+rollback; --마지막 commit한 이후 sql문(DML:insert, delete, update) 모두 취소    
+    
+commit; --더이상 rollback안됨
+
+insert into test values (seq_test.nextval,'김말동','B',56.78,'1989-09-09');
+
+--이 상태에서 rollback하면 누가 취소될까? ,select, delete from/ update insert not from
+rollback;
+
+--수정, 강호동의 혈액형을 'AB'형으로 수정
+update test set blood = 'AB' where name = '강호동';
+
+--두개의 칼럼 수정
+update test set weight = 80.8,birthday=sysdate where num = 1;
+
+
+--삭제
+delete from test; -- 모든 데이터가 삭제되므로 주의한다
+rollback;
+
+--num이 1, 5, 6을 삭제하려면
+delete from test where num  in (1, 5, 6);
+
+--table 제거
+drop table test;
+--시퀀스 제거
+drop SEQUENCE seq_test;
+rollback; --DML(insert, update, 인 경우만 롤백이되고 drop은 안됨)
+---------------------------------------------------------------
+
+create table person (
+    num number(3) constraint person_pk_num primary key,
+    blood char(2));
+    
+--기존 제약조건 제건
+alter table person drop Constraint person_pk_num;
+
+--다시 primary key에 대한 제약조건 추가
+alter table person add constraint person_num_pk primary key(num);
+
+--blood에 대해서 check 제약조건 추가
+alter table person add constraint person_ck_blood check (blood in ('A', 'B', 'O', 'AB'));
+
+-- 데이타 추가
+INSERT INTO PERSON VALUES (1, 'A');
+INSERT INTO PERSON VALUES (1, 'B');--오류:무결성 제약 조건(ANGEL.PERSON_NUM_PK)에 위배된다.
+INSERT INTO PERSON VALUES (2, 'b');--오류: 체크 제약조건(ANGEL.PERSON_CK_BLOOD)에 위배된다.
+INSERT INTO PERSON VALUES (2, 'O');
+
+--칼럼을 추가, column은 drop만
+alter table person add name varchar2(20);
+alter table person add score number(5,1) default 30.5;
+
+--컬럼명 제거(drop column)
+alter table person drop column num;
+
+--java라는 컬럼을 number 타입으로 추가후 1~100 사이값만 들어오도록 제약조건도 추가
+alter table person add java number(3) default 0;
+-- check는 값을 매기는 제약조건이다.
+alter table person add constraint person_ck_java check (java>=0 and java<=100);
+
+--컬럼명 변경 rename cloumn 
+alter table person rename column java to spring;
+
+--데이타 추가시 컬럼 순서대로 주기싫을경우 컬럼명 주면된다
+insert into person (name, blood, spring, score) values ('lee','O',120,35);
+
+drop table person;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+SELECT constraint_name, constraint_type
+FROM user_constraints
+WHERE table_name = 'STUDENT';
+ALTER TABLE student DROP PRIMARY KEY;-- 밑의 num number (5)만 가져오면 되는걸 primary key까지 가져와서 제거해주는 쿼리를 넣었다.
+--문제
+-- 테이블 생성 (student) : num 숫자(5),name 문자열(10),height 숫자(5,1),
+create table student (
+    num number (5) primary key,
+    name varchar(10) not null,
+    height number (5,1));
+ALTER TABLE student DROP CONSTRAINT student_num_pk;
+alter table student modify num number (5);--이건 값을 변경할 때는 맞지만, primary key를 결국 제거를 했어야 했기에 맞는 접근법은 아니었다.
+alter table student modify name varchar2(10);--보통 varchar2를 사용한다.(내일 강사님께 여쭤보기!), 해당 부분이 값과 뒤의 not null을 제대로 변경하게되었다.
+--  java 숫자(3) 기본값 10,spring 숫자(3) 기본값 10, ban 문자열(20)
+alter table student add java number(3) default 10;
+alter table student add spring number(3) default 10;
+alter table student add ban char(20);
+
+alter table student modify ban varchar2(20);
+--시퀀스 생성  seq_stu  기본(1부터 1씩증가), nocache 추가
+create SEQUENCE seq_stu start with 1 INCREMENT by 1 nocache; 
+
+--제약조건들 추가
+--num  에 primary key 추가(student_pk_nu)
+
+alter table student add constraint student_num_pk primary key(num);
+
+
+
+--java,spring 은 1~100 만 가능하도록 check 제약조건 추가
+alter table student add constraint student_check check (java>=1 and java<=100 and spring >0 and spring <=100);
+
+--ban 은 '햇님반','달님반','별님반' 만 추가할수 있도록 check 추가
+alter table student add constraint student_student_check check(ban in ('햇님반', '달님반', '별님반'));
+
+--5개 정도만 데이타를 추가해보자
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'강호동','1',10,11,'별님반');
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'김유나','2',20,30,'햇님반');
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'강이지','5',40,60,'달님반');
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'이우박','10',30,80,'별님반');
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'김지인','60',24,35,'햇님반');
+
+--커밋하기
+commit;
+
+--num>=4 이상 모두 삭제
+delete from student where num >=4;
+
+-- num 이 3인 사람의 java점수를 99로 ,ban을 '달님반' 으로 수정
+update student set java = 99, ban = '달님반' where num = 3;
+
+
+
+--num=2 인사람의 키를 188.9 로 수정
+update student set height = 188.9 where num = 2;
+
+
+
+--num=2 인 데이타 삭제
+delete from student where num =2;
+
+--데이타 3개정도 더 추가
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'이영훈','30',80,60,'달님반');
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'김유지','50',70,50,'햇님반');
+INSERT INTO STUDENT VALUES (seq_stu.nextval,'김이박','70',30,80,'별님반');
+
+--조회 : 이름  반 자바  스프링  총점  평균 -총점이 높은 사람부터 출력
+select name 이름, ban 반, java 자바, spring 스프링, java + spring 총점, (java+spring) /2 평균 from student group by name, ban, java, spring order by 총점 desc;
