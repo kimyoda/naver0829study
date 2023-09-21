@@ -68,12 +68,145 @@ delete from student1 where num = 3;--오류
 
 delete from student1 where num = 1;--지워짐, stuinfo에 데이타가 없어서
 
+--student의 3번 데이타를 지워보자
+--자식 테이블(stuinfo의 num이 3인 데이타를 먼저 삭제 후 student 삭제)
+delete from stuinfo where num = 3;-- 자식테이블 먼저 삭제
+delete from student1 where num = 3;-- 부모테이블 삭제
+
+select * from student1;
+
+--부모 테이블 drop
+--오류 발생 : 외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다 
+drop table student1;
+
+--자식 테이블은 삭제가 될까요?
+drop table stuinfo;
+
+----------------------------------------------------------------------
+-- 상품정보를 담을 shop 테이블
+-- 장바구니에 담을 cart 테이블을 만드는데 상품정보 저장을 위해서 shop의 num을 외부키로 설정
+-- 상품을 삭제하면 장바구니의 해당 데이타가 자동으로 삭제되도록 on delete casacde 설정해보자
+-- 시퀀스도 새로 하나 마들어보자
+create SEQUENCE seq_shop start with 10 increment by 10 nocache;  
+
+--shop table 생성
+create table shop (
+    sang_no number(5) CONSTRAINT shop_pk_no primary key,
+    sang_name varchar2(100),
+    sang_price number(7),
+    sang_color varchar2(20)
+);
+
+--외부키로 연결된 cart 테이블을 생성 - shop의 상품을 지우면 장바구니 목록은 자동으로 지워지도록
+-- cascade를 설정해서 생성해보자
+create table cart (
+    cart_no number(5) CONSTRAINT cart_pk_no primary key,
+    sang_no number(5),
+    cnt number(5),
+    cartday date
+);
+
+alter table cart add CONSTRAINT cart_fk_shopno FOREIGN key(sang_no) REFERENCES shop(sang_no) on delete cascade;
+
+--model (ERD) 확인해보세요
+
+-- 5개의 상품을 등록해보자
+INSERT INTO shop values(seq_shop.nextval, '블라우스', '23000', 'yellow');
+INSERT INTO shop values(seq_shop.nextval, '청바지', '45000', 'black');
+INSERT INTO shop values(seq_shop.nextval, '브이넥티', '11000', 'white');
+INSERT INTO shop values(seq_shop.nextval, '브이넥티', '23000', 'red');
+INSERT INTO shop values(seq_shop.nextval, '체크자켓', '130000', 'gray');
+commit;
+
+--cart에 블라우스, 브이넥티(white), 체크자켓 3개에 대해서 추가-날짜는 현재날짜(sysdate)
+insert into cart values (seq_shop.nextval, 10, 2, sysdate);
+insert into cart values (seq_shop.nextval, 30, 3, '2023-09-20');
+insert into cart values (seq_shop.nextval, 50, 1, sysdate);
+commit;
+
+select * from cart;
+--조회(innner join)
+
+--상품명,가격,색상,갯수,구입일(yyyy-mm-dd hh24:mi)
+select sang_name, sang_price, sang_color, cnt, to_char(cartday,'yyyy-mm-dd hh24:mi') cartday
+from shop s, cart c
+where s.sang_no=c.sang_no;
+--아무도 cart에 담지 않은 상품명 조회
+--상품명, 가격, 색상
+select sang_name, sang_price, sang_color
+from shop s, cart c
+where s.sang_no=c.sang_no(+) and c.cnt is null;
+
+--cascade를 지정했으므로 cart에 담긴 상품도 삭제가 된다(이때 cart도 자동으로 지워짐)
+delete from shop where sang_no = 10;
+
+--부모 테이블 drop 시켜보자
+drop table shop; --에러난다, 오류 보고 -ORA-02449: 외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다
+
+--테이블 삭제시 sub 테이블 먼저 제거 후 부모 테이블 제거
+drop table cart;
+drop table shop;
+
+--시퀀스도 지워보자
+drop SEQUENCE seq_shop; 
 
 
+-----------------------------
+--문제
+-- 시퀀스:seq_food 생성
+create SEQUENCE seq_food;
+-- 레스토랑의 메뉴 테이블(테이블명: food)
+-- food_num 숫자 (5) 기본키, fname 문자열(20): 메뉴명, fprice 숫자(7) : 가격
+Alter table food drop CONSTRAINT shop_pk_no;  
+create table food (
+    food_num number(5) CONSTRAINT food_pk_no primary key,
+    fname varchar2(20),
+    fprice varchar(7)
+);
+DROP TABLE food;
+-- 레스토랑의 메뉴 테이블(테이블명: food)
+-- food_num 숫자 (5) 기본키, fname 문자열(20): 메뉴명, fprice 숫자(7) : 가격
+create table food (
+    food_num number(5) CONSTRAINT food_pk_no primary key,
+    fname varchar2(20),
+    fprice varchar2(7)
+);
 
+-- sub 테이블은: 고객 테이블(person)
+-- person_num 숫자(5) 기본키, food_num 외부키 설정(cascade 설정)
+-- person_name 문자열(10) : 고객명
+DROP TABLE person;
+create table person (
+    person_num number(5) CONSTRAINT person_pk_no primary key,
+    food_num number(5),
+    person_name varchar2(10),
+    bookingday date
+);
+-- 예약일: bookingday: date 타입
+alter table person add CONSTRAINT person_fk_foodnum FOREIGN key(food_num) REFERENCES food(food_num) on delete cascade;
 
+--food에 5개의 메뉴를 등록하자(스파게티, 떡볶이, 돈까스, 오므라이스, 김밥 등등등..)
+INSERT INTO food values(seq_food.nextval, '스파게티', '12000');
+INSERT INTO food values(seq_food.nextval, '떡볶이', '8000');
+INSERT INTO food values(seq_food.nextval, '돈까스', '9000');
+INSERT INTO food values(seq_food.nextval, '오므라이스', '6000');
+INSERT INTO food values(seq_food.nextval, '김밥', '5000');
+commit;
 
-
+--주문한 고객정보를 추가해보자(같은 메뉴를 여러명 주문하기도 함..)
+insert into person values (seq_food.nextval, 1, '이상우', sysdate);
+insert into person values (seq_food.nextval, 3, '강호동', sysdate);
+insert into person values (seq_food.nextval, 4, '유재석', sysdate);
+insert into person values (seq_food.nextval, 2, '이재영', sysdate);
+insert into person values (seq_food.nextval, 5, '나탈리', sysdate);
+commit;
+-- 메뉴 중 스파게티를 삭제 시 주문한 테이블에서도 지워지는 지 확인
+delete from food where food_num = 1;
+select * from food;
+-- 조회 : 시퀀스, 주문자명 , 음식명, 가격, 예약일(제목도 한글로)
+select
+ f.food_num 메뉴번호, person_name 주문자명, fname 메뉴명, fprice 가격, 
+ to_char(bookingday,'yyyy-mm-dd') 예약일 from food f, person p where f.food_num = p.food_num;
 
 
 
