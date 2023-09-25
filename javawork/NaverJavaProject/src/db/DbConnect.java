@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,7 +45,7 @@ public class DbConnect {
 	public Connection getMysqlConnection() {
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection(MYSQL_URL, "angel", "a1234");
+			conn = DriverManager.getConnection(MYSQL_URL, "angel", "1234");
 		} catch (SQLException e) {
 			System.out.println("Mysql 연결 실패:" +e.getMessage());
 		}
@@ -71,5 +72,26 @@ public class DbConnect {
 			System.out.println("close 하다가 오류:" + e.getMessage());
 		}
 	}
+		//close #3
+		public void dbClose(PreparedStatement pstmt, Connection conn) {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch(SQLException|NullPointerException e) {
+				System.out.println("close 하다가 오류:" + e.getMessage());
+			}
+		}
 
-}
+		//close #4
+		public void dbClose(ResultSet rs, PreparedStatement pstmt, Connection conn) {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch(SQLException|NullPointerException e) {
+				System.out.println("close 하다가 오류:" + e.getMessage());
+			}
+
+		}
+
+	}
