@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <style>
+        body * {
+            font-family: 'Jua';
+        }
+        
+        img {
+			width : 100px;
+			margin : 3px;
+		}
+		
+		div.box {
+			width : 100px;
+			height : 100px;
+			float : left;
+			margin-right: 2px solid black;
+			border-radius: 90px;  
+		}
+    </style>
+<script>
+	window.onload = function(){
+		let array = new Array();
+		array.push("../food/12.jpg");
+		array.push("../food/3.jpg");
+		array.push("../image/C6.png");
+		array.push("../image/14.jpg");
+		array.push("../shop/20.jpg");
+		
+		let a = "";
+		for (let i = 0; i<array.length; i++) {
+			a += `<img src = "${array[i]}">`;
+		}				
+		document.querySelector(".arr").innerHTML = a;
+		
+		//of 문
+		let array3 = ["red", "blue", "pink", "green", "magenta", "gray", "yellow"];
+		let a3 = "";
+		for (let a of array3) {
+			a3 += `<div class = "box" style = "background-color:${a}"></div>`;
+		}
+		document.querySelector(".arr3").innerHTML = a3;
+	}
+</script>
+</head>
+<body>
+	<div class = "arr"></div>
+	<hr>
+	<div class = "arr2"></div>
+	<hr>
+	<div class = "arr3"></div>
+	<hr style = "clear: both;">
+</body>
+</html>
