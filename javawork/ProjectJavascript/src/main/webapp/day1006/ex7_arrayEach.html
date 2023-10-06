@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<style>
+	body * {
+		font-family: 'Jua'
+	}
+	
+	.moviestar {
+		font-family: 'Gamaja Flower';
+		
+	}
+</style>
+<script>
+	      $(function(){
+         let data = [
+                  {"name":"수지", "photo":"../image/19.jpg", "addr":"강남구 역삼동", "font":"Gamja Flower"},
+                  {"name":"박보영", "photo":"../image/12.jpg", "addr":"제주도한립읍", "font":"Jua"},
+                  {"name":"신민아", "photo":"../image/17.jpg", "addr":"부산시 해운대구", "font":"Nanum Pen Script"},
+                  {"name":"김우빈", "photo":"../image/2.jpg", "addr":"대구광역시", "font":"Single Day"},
+                  {"name":"강동원", "photo":"../image/9.jpg", "addr":"대전광역시", "font":"Permanent Marker"},
+         ]
+         
+         //figure를 이용하여 사진과 이름 주소를 넣고 글꼴을 적용시켜주세요
+         //class = "moviestar" 추가하기
+         
+         $.each(data,function(index,item){
+            let s = 
+                  `<figure>
+                     <img src="${item.photo}" style="width : 100px; height : 100px">
+                     <figcaption>
+                        <h3 style="font-family : ${item.font};">${item.name}<br>
+                           ${item.addr}
+                        </h3>
+                     </figcaption>
+                  </figure>
+                  `;
+            $("div.moviestar").append(s);
+         });
+
+	
+	
+	///////////////////////////////////////////////////////////////////////
+	     let data2 = 
+
+            {"photo" : 
+               [
+                  {"name":"수지", "photo":"../image/19.jpg", "addr":"강남구 역삼동", "font":"Gamja Flower"},
+                  {"name":"박보영", "photo":"../image/12.jpg", "addr":"제주도한립읍", "font":"Jua"},
+                  {"name":"신민아", "photo":"../image/17.jpg", "addr":"부산시 해운대구", "font":"Nanum Pen Script"},
+                  {"name":"김우빈", "photo":"../image/2.jpg", "addr":"대구광역시", "font":"Single Day"},
+                  {"name":"강동원", "photo":"../image/9.jpg", "addr":"대전광역시", "font":"Permanent Marker"},
+               ]
+            }
+            
+         $.each(data2.photo,function(index,item){
+            let s = 
+                  `<figure>
+                     <img src="${item.photo}" style="width : 100px; height : 100px">
+                     <figcaption>
+                        <h3 style="font-family : ${item.font};">${item.name}<br>
+                           ${item.addr}
+                        </h3>
+                     </figcaption>
+                  </figure>
+                  `;
+            $("div.moviestar2").append(s);
+         });
+        });
+</script>
+</head>
+<body>
+<div class = "moviestar"></div>	
+</body>
+</html>
