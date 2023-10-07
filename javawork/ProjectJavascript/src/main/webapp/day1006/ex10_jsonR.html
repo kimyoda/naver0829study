@@ -1,69 +1,99 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<style>
-	body * {
-		font-family: 'Jua';
-	}
-	
-	table {
-		width: auto;
-	}
-	
-	td div.colorCircle {
-		width: 100px;
-		height: 100px;
-		border-radius: 100px;
-		float: left;
-		
-	}
-</style>
-<script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap"
+		rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		body * {
+			font-family: 'Jua';
+		}
 
-	
-	$(function(){
-		let arr = [
-		
-			{sname:"모자", photo:"../shop/23.jpg",color:["orange","blue","red"], price : 10000},
-			{sname:"머리띠", photo:"../shop/30.jpg",color:["yellow","green","magenta", "white"], price : 18000},
-			{sname:"신발", photo:"../shop/14.jpg",color:["#ffb61","#90aa90","#89cefa", "#ff67b3"], price : 32000},
-			{sname:"자켓", photo:"../shop/31.jpg",color:["pink","tomato","lime"], price : 60000},
-		];
-		
-	let s = `<table class = "table table-bordered"> `;
 
-	// 가격, 상품명 한번돌리고
-	$.each(arr, function(index, item) {
-		s += "<tr>";
-		s += `<td><b style = "font-size:2em">${item.sname}</b></td>`;
-		s += `<td>가격: ${item.price}원</td>`;
-		s += "<td>";	
-		// tiem.color를 배열로 반복문으로 출력?
- 	
- 		// 색깔 한번 더 돌리고  
- 		$.each(item.color, function(index2, item2) {
-            s += `<div><div class="colorCircle" style="background-color:${item2};"></div></div>`;
-        });
+		td span.colorCircle {
+			width: 20px;
+			height: 20px;
+			border-radius: 100px;
+			float: left;
+			margin-right: 8px;
 
- 
-        s += "</td>";
-		s += "<td>"
-        s += `<img src="${item.photo}" width="100" height="100" border="1" hspace="5">`;
-        s += "</td>";
-        s += "</tr>";
-    });
-	
-	s += "</table>";
-	$("div.show").html(s);
-});
-</script>
+		}
+	</style>
+	<script>
+
+
+		$(function () {
+			let arr = [
+
+				{sname: "모자", photo: "../shop/23.jpg", color: ["orange", "blue", "red"], price: 10000},
+				{sname: "머리띠", photo: "../shop/30.jpg", color: ["yellow", "green", "magenta", "white"], price: 18000},
+				{sname: "신발", photo: "../shop/14.jpg", color: ["#ffb612", "#90aa90", "#89cefa", "#ff67b3"], price: 32000},
+				{sname: "자켓", photo: "../shop/31.jpg", color: ["pink", "tomato", "lime"], price: 60000},
+			];
+
+			let s = `<table class = "table table-bordered" style="width:500px"> `;
+			// 사진1
+
+			//	title, price, color 순으로 박기
+
+			// 가격, 상품명 한번돌리고
+
+			$.each(arr, function (index, item) {
+				s += "<tr>"
+				s += "<td width = '300'>"
+				s += `<img src="${item.photo}" width="250" height="200" border="1" hspace="5">`;
+				s += "</td>";
+
+				s += `<td style = "vertical-align:middle">
+					<figure>
+					  <figcaption>
+							<h3 style = "font-size:2em;" >${item.sname}</h3>
+							<h4>가격: ${item.price}원</h4>
+					  </figcaption>`;
+					  
+				$.each(item.color,function(index2,item2){
+	            	s+=`<span class="colorCircle" style="background-color:${item2};"></span>`;
+	       		 });
+				 s+="</figure>";
+				 s+="</td>";
+				 s+="</tr>";
+				  	
+
+				/*s += `<td width="300"><b style = "font-size:2em;">${item.sname}</b></td>`;
+				
+				
+				s += "</tr>";
+				s += "<tr>";
+				s += `<td>가격: ${item.price}원</td>`;
+				s += "</tr>";
+				s += "<td>";	
+				// tiem.color를 배열로 반복문으로 출력?
+		 	
+					// 색깔 한번 더 돌리고  
+					$.each(item.color, function(index2, item2) {
+					s += `<div><div class="colorCircle" style="background-color:${item2};"></div></div>`;
+				});
+		
+		 
+				s += "</td>";
+			 
+				
+				s += "</tr>";*/
+			});
+
+			s += "</table>";
+			$("div.show").html(s);
+		});
+	</script>
 </head>
+
 <body>
-<div class = "show"></div>	
+	<div class="show"></div>
 </body>
+
 </html>
