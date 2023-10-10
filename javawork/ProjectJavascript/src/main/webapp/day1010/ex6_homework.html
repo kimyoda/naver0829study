@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<style>
+	body * {
+		font-family: 'Jua'
+	}
+</style>
+<script>
+
+</script>
+</head>
+<body>
+	<h5>문제 너무 어려워요..</h5>
+	<div class = "input-group" style="width: 180px;">
+ 	<span class = "input-group-text">이름</span>
+		<input type="text" class="form-control" id="name">
+	</div>
+
+	 <br>
+	 
+	 <!-- 성별-->
+	 <div class= "input-group" style = "width: 250px; align-items: center;">
+	 <span class="input-group-text">성별</span>
+	 	<label style="margin-left: 20px; font-size: 20px;">
+			<input type="radio" name="genrd" class="genrd" value="여자" style="margin-right: 20px;">여자
+		 </label>
+		 <label style="margin-left: 20px; font-size: 20px;">
+		 <input type="radio" name="genrd" class="genrd" value="남자" style="margin-right: 20px;" checked>남자 
+		</label>
+		</div>
+		
+		<br>
+		
+		<!-- 자격증 -->
+		<div class="input-group" style="width: 350px;">
+			<span class="input-group-text">자격증</span>
+			<label style="margin-left: 20px; font-size: 20px;">
+				<input type="checkbox" name="license" value="운전면허2종" style="margin-right: 10px;">운전면허2종
+			</label>
+			<br>
+			<label style="margin-left: 20px; font-size: 20px; clear:both">
+				<input type="checkbox" name="license" value="정보처리기사" style="margin-right: 10px;">정보처리기사 
+			</label>
+		</div>
+		
+		<br>
+
+<!-- 글자색 -->
+		<div class="input-group" style="width:500px;">
+			<span class="input-group-text">글자색</span>
+			<label style="margin-left: 20px; font-size: 30px;">
+				<input type="radio" name="fname" class="fname" style="margin-right: 15px;" value="red">빨강
+			</label>
+		<label style="margin-left: 20px; font-size: 30px;">
+			<input type="radio" name="fname" class="fname" style="margin-right: 15px;" value="orange">주황
+		</label>
+		<label style="margin-left: 20px; font-size: 30px;">
+			<input type="radio" name="fname" class="fname" style="margin-right: 15px;" value="green">초록
+		</label>
+		<label style="margin-left: 20px; font-size: 30px;">
+			<input type="radio" name="fname" class="fname" style="margin-right: 15px;" value="blue">파랑
+		</label>
+	</div>
+	<br>
+	
+	<!-- 결과출력버튼 -->
+	<button type="button" id="btn1" class="btn btn-outline-danger" style="margin:30px 200px;">결과값</button>
+	<br>
+	<div class="result" style="font-size: 20px; margin: 50px;">20</div>
+	
+	<!-- 버튼액션-->
+<script>
+	// 1. 이름이라는 객체박스, 이름을 적을 수 있는 박스를 하나 만든다
+	$(".btn").on("click",function() {
+		$(".result").empty();
+	
+	
+	let name =$("#name").val() // 이름
+	let gender = $(".genrd:checked").val()
+	let col = $(".fname:checked").val()
+	
+	  let s = "";//자격증
+         
+         //체크한 자격증 리스트만들기 
+         $("input[name='license']:checked").each(function (idx) {
+            s += (idx+1) + ". " + $(this).val() + "&emsp;";
+         });
+         
+         if(s === "") {
+			 s = "자격증 없음";
+		 }
+         
+         //출력문 넣기
+         let str = 
+                `<div style = "color : ${col}">
+                   이름   : ${name}<br>
+                   성별   : ${gender}<br>
+                   자격증 : ${s}
+                </div>
+                `;
+         
+         //화면에 생성해주기
+         $(".result").html(str)
+
+		});
+	// 2. 성별이라는 객체박스, 여자와 남자를 체크할 수 있는 체크박스를 만든다(처음에 남자로 체크가 되는 default값을 넣는다)
+
+	// 3. 자격증이라는 객체박스, 면허2종 정보처리기사를 체크할 수 있는 체크박스를 만든다
+	
+	// 4. 글자색이라는 객체박스은 총 4개의 체크박스에 빨강, 초록, 검정, 노랑색으로 체크하면 해당 색이 들어가게한다.
+
+	// 5. 결과를 출력하는 box를 만들고 결과값이 출력되게한다.(각각 이름, 성별, 자격증, 글자색이 하나의 열로 표기되고 나머지 박스들이 하나의 열로 표현된다)
+</script>
+</label>
+</html>
