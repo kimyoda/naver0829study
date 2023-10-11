@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=., initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function numberThreeExam(common) {
+        let answer = 0;
+
+        // 등차수열 0번째 인덱스와 마지막 인덱스의 값이 중간값에 *2를 한다.
+        if (common[0] + common[2] === (common[1] * 2)) {
+         // 0번째 값과 1번째 값의 뺀 값이 중간값과 같다
+         answer = common[common.length-1] + (common[1] - common[0]);
+        } else {
+            // 마지막 숫자를 구한후 중간값에 초기값을 나눈 값을 곱한다
+            answer = common[common.length-1] * (common[1] / common[0]);
+        }
+        console.log(answer);
+        return answer;
+        }
+        const common = [2, 4, 6];
+        const result = numberThreeExam(common);
+        console.log(result)
+    </script>
+</body>
+</html>
