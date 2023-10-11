@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+<style>
+	body * {
+		font-family: 'Jua'
+	}
+</style>
+<script>
+	$(function(){
+		// 제목부분
+		$(".title>b").css({
+			"cursor":"pointer",
+			"font-size":"22px;"
+		});
+		
+		// 내용은 일단 안보이게 처리
+		$("div.content").hide();
+		
+		// 제목을 클릭 시 해당 기사가 slidown 효과로 내려오게 한다
+		$(".title>b").click(function(){
+			$(this).next().slideDown('slow');
+			
+			// 나머지는 내용이 닫히도록 한다(효과는 slideUp) parent, prev, content, 
+				$(this).parent().siblings().find("div.content").slideUp('slow');
+		});
+	});
+</script>
+</head>
+<body>
+<div class="title alert alert-danger">
+	<b>'2023 LoL 월드 챔피언십' 개막…플레이그라운드에도 볼거리 가득</b>
+	<div class="content">
+		하이커 그라운드는 한국관광공사가 운영하는 관광 홍보관으로 2023 LoL 월드 챔피언십 기간 동안
+		 1층부터 5층까지 모든 층이 LoL e스포츠 테마로 꾸며진다. LoL 월드 챔피언십이 '2023-2024 한국 
+		 방문의 해'를 맞아 외국인 관광객이 즐길 수 있는 대표적인 'K컬처 관광 이벤트 100선'에 선정된 것이 계기다. 
+		 이를 위해 한국관광공사와 라이엇게임즈는 지난 7월 이번 월드 챔피언십의 성공적인 개최를 위해 업무 협약을 
+		 맺고 파트너십을 체결한 바 있다.
+	</div>
+</div>	
+<div class="title alert alert-info">
+	<b>가자지구 지상전 임박한 듯…고속도로 경계로 탱크 · 헬기 집결</b>
+	<div class="content">
+이스라엘이 팔레스타인 무장정파 하마스와 맞불 공습으로 교전을 이어가는 와중에 가자지구 인근 자국민에게 대피령을 내리면서 지상 작전이 임박했다는 관측이 나오고 있습니다.
+영국 일간지 가디언은 10일(현지 시간) 전날 밤 이스라엘이 가자 인근 지역 자국민들에게 대피를 준비하고 72시간 동안 필요한 음식과 물, 다른 물자를 충분히 마련하라고 알렸다고 전했습니다.
+가디언은 이를 두고 가자지구로의 지상 작전이 임박했다는 분명한 신호라고 해석했습니다.
+	</div>
+</div>
+<div class="title alert alert-warning">
+	<b>“1900원 꼭 갚을게요”…돈 부족한 초등학생들에게 음료 내어준 사장 [잇슈 키워드]</b>
+	<div class="content">
+마지막 키워드는, '초등학생'.
+훈훈한 소식으로 마무리하죠.
+한 카페 아르바이트 직원이 초등학생 손님들에게 받았다며 편지를 공개했는데..
+함게 보시죠.
+종이에 천 원짜리 지폐 한 장과 오백원짜리 동전 하나, 그리고 백 원짜리 동전 4개가 그려져 있습니다.
+"꼭 드릴게요"라는 글자도 함께 적혀 있습니다.
+얼마전 초등학생 여자 아이 두 명이 카페에 들어와, '3천 원짜리 음료'가 뭐가 있는지 물어보더랍니다.
+3천 원 기프티콘을 가지고 있었는데, 다른 음료가 먹고 싶었던 모양입니다.
+카페 사장이 선뜻 아이들이 먹고 싶어하는 음료로 바꿔서 두 잔을 내줬다고 합니다.		
+		</div>
+</div>
+</body>
+</html>
