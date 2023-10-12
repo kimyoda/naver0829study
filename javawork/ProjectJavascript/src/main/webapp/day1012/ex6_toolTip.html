@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<style>
+	body * {
+		font-family: 'Jua'
+	}
+	
+	.mytooltip {
+		position: absolute;
+		line-height: 1.5;
+		color:black;
+		width: 200px;
+		background-color: #f90;
+		border: 2px solid white;
+		padding: 10px;
+		font-size: 15px;
+		border-radius: 30px;
+		opacity: 0.8;
+		display: none;
+	}
+	
+	.view{
+		cursor: pointer;
+		text-decoration: underline;
+		background-color: #ccc;
+	}
+	
+	ol.today li{
+		width: 200px;
+		cursor: pointer;
+		background-color: #ccc;
+	}
+	
+	ol.today li:hover{
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+</style>
+<script>
+	$(function () {
+		$("a").bind({
+			mousemove: function (e) {
+				$("div.mytooltip").css({
+					"left": e.pageX + "px",
+					"top": e.pageY + "px"
+				});
+			},
+			mouseover: function () {
+				$("div.mytooltip").fadeIn('fast');
+			},
+			mouseout: function () {
+				$("div.mytooltip").fadeOut('fast');
+			}
+		});
+
+		$(".view").bind({
+			mousemove: function (e) {
+				$("div.mytooltip").css({
+					"left": e.pageX + "px",
+					"top": e.pageY + "px"
+				});
+			},
+			mouseover: function () {
+			let color = $(this).attr("color");
+			//let text=$(this).text();
+			let text = $(this).attr("content");
+			$("div.mytooltip").css("color", color).html(text);
+			$("div.mytooltip").fadeIn('fast');
+			},
+			mouseout: function () {
+			$("div.mytooltip").fadeOut('fast');
+			}
+		});
+		
+			$("ol.today li").bind({
+			mousemove: function (e) {
+			$("div.mytooltip").css({
+					"left": e.pageX + "px",
+					"top": e.pageY + "px"
+				});
+			},
+			mouseover: function () {
+				let photo = $(this).attr("photo");
+				let text=$(this).text();
+				$("div.mytooltip").html(`<b>${text}</b><br><img src="${photo}" border=2 width=100>`);
+				$("div.mytooltip").fadeIn('fast');
+			},
+			mouseout: function () {
+				$("div.mytooltip").fadeOut('fast');
+			}
+		});
+
+
+	});
+</script>
+</head>
+<body>
+<h4 class="alert alert-danger">Tootip 링크에 마우스를 올려보세요</h4>
+<br><br>
+<a style="font-size: 25px; cursor: pointer;">
+	Tooltip Tooltip Tooltip Tooltip
+</a>	
+<pre>
+<b class="view" color="magenta" content="참패당함">대통령실, 강서 선거 완패에 "어떠한 선거결과든지 엄중하게 받아들여야"
+</b>[서울=뉴시스] 김승민 기자 = 대통령실은 12일 강서구청장 보궐선거 결과에 대해 "정부는 어떠한 선거 결과든지 엄중하게 받아들여야 된다"고 밝혔다.
+<b class="view" color="magenta" content="박살남">대통령실 관계자는 이날 오전 정부 차원의</b> 첫 입장을 냈다. 대통령실은 전날 선거 결과가 확정된 직후에는 "별도의 입장이 없다"고 말을 아꼈다.
+<b class="view" color="blue" content="아주 아작남">전날 치러진 서울 강서구청장 보궐선거 결과, 국민의힘 김태우 후보는 39.37%(9만5492표)를</b> 얻는 데 그쳐 낙선했다. 진교훈 더불어민주당 후보(당선인)는 56.52%를 얻어 17.15%포인트 격차가 났다.
+김기현 국민의힘 대표는 이날 오전 최고위원회의에서 "선거의 패인을 냉철하게 분석하고 총선 승리를 위한 특단의 대책을 강구하겠다"며 "상대적으로 우리 당이 약세인 지역과 수도권 등에서 국민들의 마음을 더 많이 얻을 수 있도록 맞춤형 대안을 마련하겠다"고 말했다.
+</pre>
+<hr>
+<hr2>오늘 나의 식사및 쇼핑목록</hr2>
+<ol type="1" class="today">
+	<li photo="../food/1.jpg">에그샌드위치</li>
+	<li photo="../food/11.jpg">망고빙수</li>
+	<li photo="../food/8.jpg">회색스위터</li>
+	<li photo="../shop/29.jpg">여름용모자</li>
+</ol>
+<div class="mytooltip">
+	java<br>
+	HTML<br>
+	SpringBoot<br>
+	React<br>
+	jQuery
+</div>
+</body>
+</html>
