@@ -13,7 +13,41 @@
 	}
 </style>
 <script>
-
+$(function(){
+	// 총을 클릭시 이벤트
+	$(".gun").click(function(){
+		// 0 ~11 사이의 난수값 발생 후 해당 이미지가 있으면 "x번 인형을 맞췄습니다"
+		// 이미 사라지고 없는 경우는 "꽝(x번)"
+		
+		let idx=parseInt(Math.random()*12);
+		if($(".sunban img").eq(idx).is(":hidden")) {
+			$("#msg").html(`꽝(${idx+1}번)!!!!`);
+		} else {
+			$(".sunban img").eq(idx).hide();
+			//$(".sunban img").eq(idx).fadeOut('fast');
+			$("#msg").html(`${idx+1} 번째 인형을 맞췄습니다`);
+		}
+		
+		
+		// 12개의 인형이 모두 없어지면 "You Win!! Game Over!!" 출력
+		// hidden의 갯수 구하기
+		let n=$(".sunban img:hidden").length;
+		console.log(n);
+		if (n==12) {
+			$("#msg").html("You Win!! Game Over!!");
+		}
+	});
+	
+	// 지폐
+	$(".money img").click(function(){
+		$(".sunban img").show();
+		$("#msg").html("");
+		
+		// 현재 지폐를 사라지게 한다
+		// $(this).css("display", "none"); 자리차지를 하지않음
+		$(this).css("visibility", "hidden"); // 자리차지함
+	});
+});
 </script>
 </head>
 <body>
