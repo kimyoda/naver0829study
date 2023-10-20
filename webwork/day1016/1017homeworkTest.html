@@ -6,127 +6,118 @@
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
 <style>
  body * {
-        font-family: 'Jua';
-    }
+   font-family: 'Jua';
+   }
 
-    table.mytable {
+table.mytable {
     width: 600px;
     margin-top: 20px;
     margin: center;
     background-color: lightcoral; /* Your desired background color */
     }
 
-    .calendar-inputs {
-        display: flex;
-        align-items: center;
-    }
-
-    .calendar table td {
-    text-align: center; /* 날짜 가운데 정렬 */
-    vertical-align: middle; /* 날짜 수직 가운데 정렬 */
+.calendar-inputs {
+   display: flex;
+   align-items: center;
    }
 
-    .calendar table {
-        width: 600px;
-        border: 6px groove gray;
-        margin-top: 20px;
+.calendar table td {
+   text-align: center; /* 날짜 가운데 정렬 */
+   vertical-align: middle; /* 날짜 수직 가운데 정렬 */
+   }
+
+.calendar table {
+    width: 600px;
+    border: 6px groove gray;
+    margin-top: 20px;
     }
 
-    .calendar table thead {
-        height: 50px;
-        background-color: aqua !important;
+.calendar table thead {
+    height: 50px;
+    background-color: aqua !important;
+    }
+ 
+.calendar table tbody tr {
+    height: 60px;
+    }
+ 
+.calendar table thead tr{
+    height: 50px;
+    background-color: lightgray;
     }
 
-    .calendar table tbody tr {
-        height: 60px;
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     }
 
-    .calendar table thead tr{
-        height: 50px;
-        background-color: lightgray;
+.calendar-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     }
 
-    .calendar-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .calendar-button {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .calendar table {
+.calendar table {
     width: 600px;
     border: 6px groove gray;
     margin-top: 20px;
     background-color: white; /* 달력 테이블 배경색 */
    }
-
-    /* 오늘 날짜 강조 스타일 */
-    .today {
-        background-color: lightcoral !important;
-        font-weight: bold;
+/* 오늘 날짜 강조 스타일 */
+.today {
+    background-color: lightcoral !important;
+    font-weight: bold;
+    }
+/* 각 요일에 해당하는 클래스 추가 */
+.sun {
+    color: red;
+    background-color: lightcyan; 
     }
 
-    /* 각 요일에 해당하는 클래스 추가 */
-    .sun {
-        color: red;
-        background-color: lightcyan; /* 일요일 배경색 추가 (예: 노란색) */
+.mon, .tue, .wed, .thu, .fri {
+    color: black;
+    background-color: lightcyan; 
+    }
+    
+.sat {
+    color: navy;
+    background-color: lightcyan; 
     }
 
-
-
-    .mon, .tue, .wed, .thu, .fri {
-        color: black;
-        background-color: lightcyan; /* 월요일 배경색 추가 (예: 연두색) */
+.calendar-button {
+    margin-top: 10px;
+    width: 100px; /* 버튼의 너비를 조절 */
     }
 
-
-    .sat {
-        color: navy;
-        background-color: lightcyan; /* 토요일 배경색 추가 (예: 청색) */
-    }
-
-    .calendar-button {
-        margin-top: 10px;
-        width: 100px; /* 버튼의 너비를 조절 */
-    }
-
-    /* 일요일의 날짜에 빨간색 스타일 적용 */
-   .calendar table tbody tr td:nth-child(1) {
+/* 일요일의 날짜에 빨간색 스타일 적용 */
+.calendar table tbody tr td:nth-child(1) {
     color: red;
    }
-
-   /* 토요일의 날짜에 파란색 스타일 적용 */
-   .calendar table tbody tr td:nth-child(7) {
-    color: blue;
+/* 토요일의 날짜에 파란색 스타일 적용 */
+.calendar table tbody tr td:nth-child(7) {
+   color: blue;
    }
+
 </style>
 <script>
     window.onload = function () {
         // 초기 페이지 로드시 달력 출력
         displayCalendar();
     }
-
     // 달력을 출력하는 함수
     function displayCalendar() {
     const yearInput = document.querySelector(".form-control.year-input");
     const monthInput = document.querySelector(".form-control.month-input");
     const selectedYear = Number(yearInput.value);
     const selectedMonth = Number(monthInput.value);
-
     // 입력값 유효성 검사
     if (isNaN(selectedYear) || selectedYear < 1 || selectedYear > 2400) {
-        // alert("올바른 연도를 입력하세요 (1에서 2400 사이)");
         return;
     }
 
     if (isNaN(selectedMonth) || selectedMonth < 1 || selectedMonth > 12) {
-        // alert("올바른 월을 입력하세요 (1에서 12 사이)");
         return;
     }
 
@@ -135,7 +126,6 @@
     const lastMonthLastDay = new Date(selectedYear, selectedMonth - 1, 0).getDate();
     const weekday = date.getDay();
     const lastMonthLastDayWeekday = (weekday - 1 + 7) % 7;
-
     let calendarHTML = `
         <table class="table table-bordered">
             <caption align="top"><h3>${selectedYear}년 ${selectedMonth}월 달력</h3></caption>
@@ -159,13 +149,12 @@
 
     let day = 1;
     let weekdayCounter = weekday;
-
     while (day <= lastDay) {
         if (weekdayCounter === 7) {
             calendarHTML += "</tr><tr>";
             weekdayCounter = 0;
         }
-
+        
         // 강조 표시
         const currentDate = new Date();
         if (
@@ -173,26 +162,21 @@
             selectedYear === currentDate.getFullYear() &&
             selectedMonth === currentDate.getMonth() + 1
         ) {
-            calendarHTML += `<td class="today">${day}</td>`;
-        } else {
+          calendarHTML += `<td class="today">${day}</td>`;
+          } else {
             calendarHTML += `<td>${day}</td>`;
-        }
-
-        weekdayCounter++;
-        day++;
+          }
+          weekdayCounter++;
+          day++;
     }
-
+    
     if (weekdayCounter > 0) {
-  calendarHTML += `<td style='color:#ccc;' colspan="${7 - weekdayCounter + 1}"></td>`;
-}
-
+    calendarHTML += `<td style='color:#ccc;' colspan="${7 - weekdayCounter + 1}"></td>`;
+    }
     calendarHTML += "</tr></tbody></table>";
-
     // 수정한 코드에서 달력을 출력
     document.querySelector(".calendar").innerHTML = calendarHTML;
 }
-
-
 </script>
 </head>
 <body>
@@ -214,17 +198,14 @@
   <div class="calendar"></div>
   <table class="calendar mytable"></table>
   <script>
-   
    const yearInput = document.querySelector(".year-input");
    const monthInput = document.querySelector(".month-input");
-
-   // 연도   
+   // 연도
    yearInput.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
         displayCalendar();
          }
     });
-   
    // 월
    monthInput.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
