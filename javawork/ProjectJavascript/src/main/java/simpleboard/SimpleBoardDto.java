@@ -11,6 +11,25 @@ public class SimpleBoardDto {
 	private int readcount;
 	private Timestamp writeday;
 	
+	
+	public Timestamp getWriteday() {
+		return writeday;
+	}
+	public void setWriteday(Timestamp writeday) {
+		this.writeday = writeday;
+	}
+	// 댓글 갯수를 저장하기 위한 변수
+	private int answercount;
+	
+	
+	
+	public int getAnswercount() {
+		return answercount;
+	}
+	public void setAnswercount(int answercount) {
+		this.answercount = answercount;
+	}
+	
 	public String getNum() {
 		return num;
 	}
@@ -47,10 +66,5 @@ public class SimpleBoardDto {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-	public Timestamp getWriteday() {
-		return writeday;
-	}
-	public void setWriteday(Timestamp writeday) {
-		this.writeday = writeday;
-	}
+
 }

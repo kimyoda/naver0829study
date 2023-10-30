@@ -1,3 +1,4 @@
+<%@page import="simpleboard.AnswerBoardDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="simpleboard.SimpleBoardDto"%>
 <%@page import="java.util.List"%>
@@ -44,9 +45,11 @@
 	List<SimpleBoardDto> list = dao.getAlllist();
 	// 날짜 형식
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
+	// 댓글 dao 선언
+	AnswerBoardDao adao = new AnswerBoardDao();
 %>
 <body>
-<div stlye="margin: 30px 50px;">
+<div style="margin: 30px 50px;">
 	<button type="button" class="btn btn-success btn-sm" onclick="location.href='boardform.jsp'">글쓰기</button>
 	<br>
 	<h5><b>총 <%=list.size() %>개의 게시글이 있습니다</b></h5>
@@ -72,6 +75,11 @@
 		<%} else {
 			 int n = 0;
 			 for (SimpleBoardDto dto:list) {
+				 
+				 // 댓글 갯수 가져오기
+				 int acount = adao.getBoardAnswers(dto.getNum()).size();
+				 // dto에 저장
+				 dto.setAnswercount(acount);
 			%>	
 				<tr align = "center">
 					<td><%=list.size()-n++ %></td>
@@ -81,6 +89,11 @@
 							<%
 							if (!dto.getPhoto().equals("no")) {%>
 								<i class="bi bi-image photoicon"></i>
+							<%}
+							
+							if (acount > 0) {%>
+								&nbsp;
+								<span style = "color: red">(<%=dto.getAnswercount()%>)</span> 
 							<%}
 							%>
 						</a>
