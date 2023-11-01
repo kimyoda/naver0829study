@@ -51,7 +51,7 @@ public class SimpleBoardDao {
 	// insert
 	public void insertBoard(SimpleBoardDto dto) {
 		String sql = """
-				insert into simpleboard (writer, subject, content, photo, writerday)
+				insert into simpleboard (writer, subject, content, photo, writeday)
 				values (?, ?, ?, ?, now())
 					""";
 		Connection conn = db.getConnection();
