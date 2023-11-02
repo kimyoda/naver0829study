@@ -16,7 +16,7 @@
 	StudentDao dao = new StudentDao();
 	
 	// dto 담기
-	List<StudentDto> list = dao.getAllStudent();	
+	List<StudentDto> list = dao.getSearchStudent;	
 	// 날짜 포멧 지정
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	// 리스트 목록을 JSONArray로 배열 형태로 json으로 구현

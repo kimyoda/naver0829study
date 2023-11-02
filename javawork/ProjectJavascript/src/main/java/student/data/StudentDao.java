@@ -7,33 +7,35 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
+import myshop.data.MyShopDto;
 import mysql.db.DbConnect;
 
 public class StudentDao {
 	DbConnect db = new DbConnect();
 	
-	// 전체출력
-	public List<StudentDto> getAllStudent() {
+	// 검색 결과 출력
+	public List<StudentDto> getSearchStudent(String search) {
 		List<StudentDto> list = new Vector<StudentDto>();
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from student order by num";
-		
+		String sql="select * from student where name like ? order by num desc";
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			// 바인딩
+			pstmt.setString(1, "%"+search.trim()+"%");
 			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				StudentDto dto = new StudentDto(); // while 문 안에 작성
-				dto.setNum(rs.getInt("num"));
+
+			while(rs.next()) {
+				StudentDto dto = new StudentDto(); // 반드시 while문 안에 선언
+				dto.setNum(rs.getString("num"));
 				dto.setName(rs.getString("name"));
 				dto.setBlood(rs.getString("blood"));
 				dto.setPhone(rs.getString("phone"));
 				dto.setWriteday(rs.getTimestamp("writeday"));
 
-				// list에 추가
+				// list 에 추가
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -44,9 +46,10 @@ public class StudentDao {
 		}
 		return list;
 	}
+
 	
 	// insert
-	public void insertStudnet(StudentDto dto) {
+	public void insertStudent(StudentDto dto) {
 		String sql = "insert into student (name, blood, phone, writeday) values (?, ?, ?, now())";
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
@@ -57,6 +60,8 @@ public class StudentDao {
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getBlood());
 			pstmt.setString(3, dto.getPhone());
+			// 실행 
+			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,33 +71,6 @@ public class StudentDao {
 		
 	}
 	
-	// update
-	public void updateStudent(StudentDto dto) {
-		String sql = "update student"
-				+ "       set name = ?"
-				+ "        ,  blood = ?"
-				+ "        ,  phone = ?"
-				+ "        ,  writeday = now()"
-				+ "      where num = ?";
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			// 바인딩
-			pstmt.setString(1, dto.getName());
-			pstmt.setString(2, dto.getBlood());
-			pstmt.setString(3, dto.getPhone());
-			pstmt.setInt(4, dto.getNum());
-			// 실행
-			pstmt.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			db.dbClose(pstmt, conn);
-		}
-	}
 	
 	// delete
 	public void deleteStudent(String num) {
@@ -115,32 +93,6 @@ public class StudentDao {
 		}
 	}
 	
-	// num에 해당하는 dto 반환
-	public StudentDto getStudent(String num) {
-		StudentDto dto = new StudentDto();
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select * from student where num=?";
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			// 바인딩
-			pstmt.setString(1, num);
-			// 실행
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				dto.setNum(rs.getInt("num"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			db.dbClose(rs, pstmt, conn);
-		}
-		
-		return dto;
-	}
+
 	 
 }
