@@ -13,6 +13,7 @@ public class StudentDto {
 	public String getNum() {
 		return num;
 	}
+	
 	public void setNum(String num) {
 		this.num = num;
 	}
@@ -41,6 +42,4 @@ public class StudentDto {
 	public void setWriteday(Timestamp writeday) {
 		this.writeday = writeday;
 	}
-	
-	
 }
