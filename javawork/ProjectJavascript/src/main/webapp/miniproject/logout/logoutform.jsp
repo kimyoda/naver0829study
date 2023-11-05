@@ -19,7 +19,7 @@
 %>
 <body>
     <div class="wrapper">
-        <h4><%= loginid %>님이 로그인을 하였습니다</h4>
+        <h4><%= loginid %>님이 로그인을 하였습니다.</h4>
         <!-- 로그인 페이지의 버튼 스타일을 그대로 사용 -->
 	<button type="button" class="form-wrapper form button" style="width:100px; margin-left:20px;" onclick="location.href='logoutaction.jsp'">로그아웃</button>
     </div>
