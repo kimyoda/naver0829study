@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <% 
 	// 아이디와 비번을 읽는다
+	request.setCharacterEncoding("utf-8");
+	
 	String loginid = request.getParameter("loginid");
 	String loginpass = request.getParameter("loginpass");
 	String saveid = request.getParameter("saveid"); // 체크를 안할경우 null
