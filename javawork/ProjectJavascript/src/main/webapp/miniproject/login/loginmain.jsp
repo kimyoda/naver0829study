@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>loginPage</title>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap"
 		rel="stylesheet">
@@ -27,12 +27,12 @@
 			<br>
 			<br>
 			<h3>
-				<b>정보를 확인하려면 먼저 로그인을 해주세요!</b>
+				<b></b>
 			</h3>
 		<%
 		} else {
 		%>
-		<jsp:include page="../logout/logoutform.jsp" />
+		<jsp:include page="../login/loginform.jsp" />
 		<br>
 		<br> <img src="main_page.png">
 		<%

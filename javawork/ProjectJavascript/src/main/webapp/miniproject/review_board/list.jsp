@@ -49,6 +49,32 @@
 	AnswerBoardDao adao = new AnswerBoardDao();
 %>
 <body>
+<%
+	// 세션에서 loginid 가져오기
+	String loginid = (String)session.getAttribute("loginid");
+
+	if (loginid != null) {
+	%>
+    <div class="wrapper">
+      <!-- "00님이 로그인 중입니다" 메시지 표시 -->
+      <h4><%=loginid %>님이 로그인 중입니다.</h4>
+      <!-- 로그아웃 버튼 -->
+      <form action="../login/loginmain.jsp" method="post">
+      	<button type="submit" class="form-wrapper form button">로그아웃</button>
+      </form>
+    </div>
+	<%
+	} else {
+    // 로그인이 안 된 경우에 대한 처리
+	%>
+    <div class="wrapper">
+        <!-- 로그인 버튼 또는 로그인 관련 내용 표시 -->
+        <h4>로그인하세요</h4>
+        <a href="login.jsp">로그인</a>
+    </div>
+	<%
+	}
+	%>
 <div style="margin: 30px 50px;">
 	<button type="button" class="btn btn-success btn-sm" onclick="location.href='boardform.jsp'">글쓰기</button>
 	<br>

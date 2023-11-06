@@ -75,18 +75,18 @@ $(function(){
 
 %>
 <body>
-<div style="margin: 30px 50px">
-	<table class = "table table-bordered" style="width: 500px;">
+<div style="margin: 30px auto; text-align: center; width: 500px;">
+	<table class="table table-bordered" style="width: 500px; margin: 0 auto; text-align: center;">
 		<tr>
-			<td>
-			<h2><b><%=dto.getTitle() %></b></h2>
-			<span><b><%=dto.getContent() %></b></span>
-			<span class="day">
-			<%=sdf.format(dto.getCreate_dt()) %>
-			&nbsp;
-			조회&nbsp;<%=dto.getView_cnt() %>
-			</span>
-			</td>
+    		<td style="text-align: center;">
+        	<h2><b><%=dto.getTitle() %></b></h2>
+        		<span><b><%=dto.getContent() %></b></span>
+        		<span class="day">
+        		<%=sdf.format(dto.getCreate_dt()) %>
+        		&nbsp;
+        		조회&nbsp;<%=dto.getView_cnt() %>
+        		</span>
+    		</td>
 		</tr>
 		<tr>
  			<td>

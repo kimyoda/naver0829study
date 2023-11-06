@@ -22,9 +22,11 @@
     <div class="wrapper">
         <h4><%= loginid %>님이 로그인을 하였습니다.</h4>
         <!-- 로그인 페이지의 버튼 스타일을 그대로 사용 -->
-        <button type="submit" class="form-wrapper form button" onclick="location.href='../login/loginform.jsp'">로그아웃</button>
-        <br>
-        <!-- 다시 로그인 페이지로 이동하는 버튼을 추가 -->
+        <form action="../login/loginform.jsp" method="post">
+        	<button type="submit" class="form-wrapper form button">logout</button>
+        </form>
+        	<br>
+        	<a href="../review_board/list.jsp" class="btn btn-success">게시판으로 이동</a>
      </div>
 </body>
 </html>
