@@ -16,7 +16,7 @@
 </head>
 <div class="input-group" style="width:500px;">
 	<h3>고객님이 로그인중입니다</h3>
-	<button type="button" class="btn btn-danger" style="width:100px;margin-left:20px;" onclick="location.href='logoutaction.jsp'">로그아웃</button>
+	<button type="button" class="btn btn-danger" style="width:100px;margin-left:20px;" onclick="location.href='../logout/logoutaction.jsp'">로그아웃</button>
 </div>
 <body>
 </body>
