@@ -53,7 +53,7 @@ public class ReviewBoardDao {
 	// insert
 	public void insertBoard(ReviewBoardDto dto) {
 		String sql = """
-				insert into reviewboard (writer_id, title, content, view_cnt, delete_yn, 
+				insert into revewboard (writer_id, title, content, view_cnt, delete_yn, 
 				create_dt, modify_dt, delete_dt) values 
 				(?, ?, ?, ?, ?, ?, ?, ?)
 					""";
