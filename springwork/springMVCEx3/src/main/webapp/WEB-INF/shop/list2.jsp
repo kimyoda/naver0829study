@@ -35,6 +35,14 @@
 </style>
 </head>
 <body>
+<!-- 강사님 코드
+	<h2>message: ${message}</h2>
+	<h3>날짜 : <fmt:formatDate value = "${today}" pattern = "yyyy-MM-dd HH:mm"/></h3>
+    <h2>오늘의 브런치 메뉴들</h2>
+    <c:forEach var="photo" items="${list}">
+      <img src = "../../photo/${photo}" width = "200" height = "200" border = "1">
+    </c:forEach>
+ -->
 	<h3 class="alert alert-info">${message}</h3>
 	<h3>${today}</h3>
 	<hr>

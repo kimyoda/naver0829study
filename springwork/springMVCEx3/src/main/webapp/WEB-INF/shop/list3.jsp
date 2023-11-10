@@ -30,10 +30,19 @@
    	height: 180px;
    	border-radius: 30px;
    }
-   
+ 
   
 </style>
 </head>
+<!-- 강사님 코드
+	<h2>이름 : ${name}</h2>
+	<h3>주소 : ${addr}</h3>
+	<br>
+	<c:forEach var="f" items="${food}">
+	  <img src="../../photo/${f}" width="200" height="200" border="3">
+	</c:forEach>
+	
+ -->
 <body>
 	<h3 class="alert alert-info">내가 매일 먹는 음식ㅠ.ㅠ</h3>
 	<hr>

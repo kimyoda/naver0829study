@@ -71,6 +71,7 @@ public class ShopController {
 		return "list2";
 	}
 	
+	
 	@GetMapping("food/photo/detail")
 	public String list3(Model model) {
 
@@ -83,7 +84,35 @@ public class ShopController {
 		model.addAttribute("list", list);
 		return "list3";
 	}
-}	
+	
+	// 강사님 코드, dto없이도 가능하다
+	//@GetMapping("/food/morning/brunch")
+	// public String brunch(Model model) {
+	// model.addAttribute("message", "오늘의 브런치 메뉴들");
+	// model.addAttribute("today", new Date());
+	// List<String> list = new ArrayList<String>();
+	// list.add("K-034.png");
+	// list.add("K-035.png");
+	// list.add("K-043.png");
+	// model.addAttribute("list",list);
+	// return "list2";
+	// }
+	
+	// 강사님 코드 Servelt이기 때문에 사용, 옛날에 컨트롤러를 사용할 때 정해져있었다
+	// @GetMapping("/food/photo/detail")
+	// public ModelAndView detail() {
+	// ModelAndView mview = new ModelAndView();
+	// List<String> list = new ArrayList<String>();
+	// list.add("11.jpg");
+	// list.add("8.jpg");
+	// list.add("9.jpg");
+	// mview.addObject("food", list);
+	// mview.addObject("name", "이문희");
+	// mview.addObject("addr", "서울시 강남구");
+	// mview.setViewName("list3");
+	// return mview;
+	// }
+}	 
 
 				
 	
