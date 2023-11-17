@@ -1,4 +1,4 @@
-package data.dto;
+package data.dao;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ public class PhotoDao {
 	private SqlSession session;
 	private String nameSpace = "data.dao.PhotoDao";
 	
-	public void insertPhoto(PhotoDto dto) {
+	public void insertPhoto(PhotoDao dto) {
 		session.insert(nameSpace + "insertPhoto", dto);
 	}
 	
-	public List<PhotoDto> getAllPhoto() {
+	public List<PhotoDao> getAllPhoto() {
 		return session.selectList(nameSpace + "selectAllPhotos");
 	}
 	

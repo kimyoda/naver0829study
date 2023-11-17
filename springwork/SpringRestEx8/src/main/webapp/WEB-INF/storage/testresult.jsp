@@ -18,14 +18,14 @@
 </style>
 </head>
 <body>
- <h5>80X80 사진</h5>
- <img src = "${photo80}" border="1">
- <hr>
- <h5>150X150 사진</h5>
- <img src = "${photo150}" border="1">
- <hr>
- <h5>원본 사진</h5>
- <img src = "${photo}" border="1">
- <hr>  
+ 	<h5>80X80 사진</h5>
+ 	<img src = "${photo80}" border="1">
+ 	<hr>
+ 	<h5>150X150 사진</h5>
+ 	<img src = "${photo150}" border="1">
+ 	<hr>
+ 	<h5>원본 사진</h5>
+ 	<img src = "${photo}" border="1">
+ 	<hr>  
 </body>
 </html>
