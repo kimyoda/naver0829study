@@ -29,7 +29,6 @@ public class NcpObjectStorageService implements ObjectStorageService {
 						naverConfig.getAccessKey(), naverConfig.getSecretKey())))
 				.build();
 	}
-
 	@Override
 	public String uploadFile(String bucketName, String directoryPath, MultipartFile file) {
 		System.out.println("uploadFile="+file.getOriginalFilename());
