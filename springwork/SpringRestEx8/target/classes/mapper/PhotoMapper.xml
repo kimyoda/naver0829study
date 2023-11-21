@@ -7,7 +7,7 @@
 	<select id="selectAllPhotos" resultType="PhotoDto">
 		select * from photodb order by num desc
 	</select>
-	<delete id="deletPhoto" parameterType="int">
+	<delete id="deletePhoto" parameterType="int">
 		delete from photodb where num=#{num}
 	</delete>
 </mapper>

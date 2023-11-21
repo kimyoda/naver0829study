@@ -6,22 +6,24 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import data.dto.PhotoDto;
+
 @Repository
 public class PhotoDao {
 	
 	@Autowired
 	private SqlSession session;
-	private String nameSpace = "data.dao.PhotoDao";
+	private String nameSpace = "data.dao.PhotoDao.";
 	
-	public void insertPhoto(PhotoDao dto) {
+	public void insertPhoto(PhotoDto dto) {
 		session.insert(nameSpace + "insertPhoto", dto);
 	}
 	
-	public List<PhotoDao> getAllPhoto() {
+	public List<PhotoDto> getAllPhotos() {
 		return session.selectList(nameSpace + "selectAllPhotos");
 	}
 	
 	public void deletePhoto(int num) {
-		session.delete(nameSpace + "deletPhoto", num);
+		session.delete(nameSpace + "deletePhoto", num);
 	}
 }
