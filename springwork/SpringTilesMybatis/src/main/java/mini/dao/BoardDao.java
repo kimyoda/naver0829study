@@ -31,19 +31,27 @@ public class BoardDao {
   }
   
   public void updateRestep(Map<String, Integer> map) {
-	  session.update(nameSpace + "updateRestepOfBoard", map);
+	session.update(nameSpace + "updateRestepOfBoard", map);
   }
   
   public void insertBoard(BoardDto dto) {
-	  session.insert(nameSpace + "insertBoard", dto);
+    session.insert(nameSpace + "insertBoard", dto);
   }
   
   public void updateReadCount(int num) {
-	  session.update(nameSpace + "updateReadCountOfBoard", num);
+    session.update(nameSpace + "updateReadCountOfBoard", num);
   }
   
   public BoardDto getData(int num) {
-	  return session.selectOne(nameSpace + "selectDataByNum", num);
+    return session.selectOne(nameSpace + "selectDataByNum", num);
+  }
+  
+  public void updateBoard(BoardDto dto) {
+    session.update(nameSpace + "updateBoard", dto);
+  }
+  
+  public void deleteBoard(int num) {
+    session.delete(nameSpace + "deleteBoard", num);
   }
   
 }

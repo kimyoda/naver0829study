@@ -53,7 +53,14 @@
 						<img src = "../res/photo/re.png">
 					</c:if>
 					<!-- 제목 표시 -->
-					<a href = "./content?num=${dto.num}&currentPage=${currentPage}">${dto.subject}</a>
+					<a href = "./content?num=${dto.num}&currentPage=${currentPage}">${dto.subject}
+					  <c:if test = "${dto.photocount == 1}">
+						<i class="bi bi-images" style="color:gray;"></i>
+				      </c:if>
+				      <c:if test = "${dto.photocount > 1}">
+						<i class="bi bi-images" style="color:gray;"></i>
+				      </c:if>
+					</a>
 				</td>
 				<td>${dto.writer}</td>
 				<td>

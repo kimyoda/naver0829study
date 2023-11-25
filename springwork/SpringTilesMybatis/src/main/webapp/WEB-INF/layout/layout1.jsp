@@ -74,6 +74,10 @@
    		height: 100px;
    		line-height: 100px;
    		text-align: center;
+   		
+   div.main_container div.content {
+       position: absolute;
+       text-align: left;
    }
 
    
@@ -94,9 +98,9 @@
 	 	<tiles:insertAttribute name = "home"/>
 	</div>
 
-	<%-- <div class = "footer">
-		<tiles:insertAttribute name = "footer"/>	
-	</div>--%>	
+<!--<div class="footer">
+   <tiles:insertAttribute name="footer"/>
+</div>-->	
 </div>
 </body>
 </html>

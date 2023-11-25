@@ -11,16 +11,26 @@ import mini.dto.BoardFileDto;
 @Repository
 public class BoardFileDao {
 
-  @Autowired
-  private SqlSession session;
-		
-  private String nameSpace = "mini.dao.BoardFileDao.";
-  
-  public void insertPhoto(BoardFileDto dto) {
-	  session.insert(nameSpace + "insertPhotoOfFile", dto);
-  }
-  
-  public List<String> getPhotoByNum(int num) {
-	  return session.selectList(nameSpace + "selectAllPhotoByNum", num);
-  }
+   @Autowired
+   private SqlSession session;
+   
+   private String nameSpace="mini.dao.BoardFileDao.";
+   
+   public void insertPhoto(BoardFileDto dto)
+   {
+      session.insert(nameSpace+"insertPhotoOfFile", dto);
+   }
+   
+   public List<String> getPhotoByNum(int num)
+   {
+      return session.selectList(nameSpace+"selectAllPhotoByNum", num);
+   }
+   
+   public List<BoardFileDto> getFileDataByNum(int num) {
+      return session.selectList(nameSpace+"selectAllDataByNum", num);
+   }
+   
+   public void deletePhoto(int idx) {
+      session.delete(nameSpace+"deletePhotoByIdx", idx);
+   }
 }
