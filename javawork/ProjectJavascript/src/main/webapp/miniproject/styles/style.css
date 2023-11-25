@@ -1,6 +1,19 @@
- body {
+body {
   font-family: 'Jua';
- }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.center-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.signup-link {
+  text-align: center;
+}
  
 .wrapper {
   display: flex;

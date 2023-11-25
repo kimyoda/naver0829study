@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>login</title>
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -27,14 +27,20 @@
   
 %>
 <body>
+<div class="wrapper">
 <div class="form-wrapper">
-  <h1>로그인</h1>
+  <h1>Login</h1>
   <form action="loginaction.jsp" method="post">
     <input type="text" class="form-control" autofocus required placeholder ="아이디" name="loginid" value = "<%=loginid %>">
     <input type="password" class="form-control" required placeholder ="비밀번호" name="loginpass">
-    <button type="submit">로그인</button>
-    <a href="../signUp/signUp.jsp">회원가입</a>
+    <button type="submit">login</button>
+    <button type="button" class="btn btn-success" onclick="location.href='../review_board/list.jsp'">게시판으로 이동</button>  
   </form>
+  <br>
+  <div class="center-link">
+  <p>Don't have an account?&nbsp;<a href="../signUp/signUp.jsp" class="signup-link">회원가입</a></p>	
+  </div>
+</div>
 </div>
 </body>
 </html>
