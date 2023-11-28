@@ -37,24 +37,24 @@
 </head>
 <body>
 <c:if test="${sessionScope.loginok==null}">
-   <h3>먼저 로그인을 한후 수정 오네가이시마스</h3>
+   <h3>먼저 로그인을 한후 수정 </h3>
 </c:if>
 <c:if test="${sessionScope.loginok!=null}">
 <div style="margin-left:50px;">
-   <form action="./updateboard" method="post" enctype="multipart/form-data">
+   <form action = "./updateboard" method = "post" enctype = "multipart/form-data">
       <!-- hidden -->
-      <input type="hidden" name="currentPage" value="${currentPage}">
-      <input type="hidden" name="num" value="${dto.num}">
+      <input type="hidden" name = "currentPage" value = "${currentPage}">
+      <input type="hidden" name = "num" value = "${dto.num}">
    
-      <table class="table table-bordered" style="width:500px;">
-         <caption align="top">
+      <table class = "table table-bordered" style = "width:500px;">
+         <caption align = "top">
             <b>글수정</b>
          </caption>
          <tr>
-            <th width="100">제목</th>
+            <th width = "100">제목</th>
             <td>
-               <input type="text" name="subject" class="form-control"
-               required autofocus value="${dto.subject}">
+               <input type = "text" name = "subject" class = "form-control"
+               required autofocus value = "${dto.subject}">
             </td>
          </tr>
          <tr>
@@ -64,23 +64,23 @@
             </td>
          </tr>
          <tr>
-            <td colspan="2">
-               <textarea name="content" class="form-control" required
-               style="width: 100%;height: 100px;">${dto.content}</textarea>
+            <td colspan = "2">
+               <textarea name = "content" class = "form-control" required
+               style = "width: 100%;height: 100px;">${dto.content}</textarea>
                <br>
-               <c:forEach var="fdto" items="${flist}">
-                  <div class="photos">
-                     <img src="../res/upload/${fdto.photoname}">
-                     <i class="bi bi-x-circle photodel" idx="${fdto.idx}"></i>
+               <c:forEach var = "fdto" items = "${flist}">
+                  <div class = "photos">
+                     <img src = "../res/upload/${fdto.photoname}">
+                     <i class = "bi bi-x-circle photodel" idx = "${fdto.idx}"></i>
                      <script>
                         $(document).on("click",".photodel",function(){
-                           let idx=$(this).attr("idx");
-                           let $photodel=$(this);
+                           let idx = $(this).attr("idx");
+                           let $photodel = $(this);
                            $.ajax ({
-                              type:"get",
-                              dataType:"text",
-                              url:"./delphoto",
-                              data:{"idx":idx},
+                              type : "get",
+                              dataType : "text",
+                              url : "./delphoto",
+                              data : {"idx":idx},
                               success:function(res) {
                                  $photodel.parent().remove();
                               }
@@ -92,8 +92,8 @@
             </td>
          </tr>
          <tr>
-            <td colspan="2" align="center">
-               <button type="submit" class="btn btn-outline-success">수정</button>
+            <td colspan = "2" align = "center">
+               <button type = "submit" class = "btn btn-outline-success">수정</button>
             </td>
          </tr>
       </table>
