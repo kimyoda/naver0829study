@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class MyShopMybatisBootApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(MyShopMybatisBootApplication.class, args);
     }
 
