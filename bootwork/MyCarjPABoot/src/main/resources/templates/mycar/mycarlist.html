@@ -22,7 +22,7 @@
 </head>
 <body>
 <div style="margin: 30px;">
-    <h3>MyCar 목록 출력</h3>
+    <h3 class="alert alert-danger">MyCar 목록 출력</h3>
     <h4><b>총 [[${totalCount}]]개의 자동차 정보가 등록되어있습니다</b>
         <button type="button" class="btn btn-outline-success" style="margin-right: 100px;"
                 onclick="location.href='./addcar'">자동차등록
@@ -47,6 +47,12 @@
                          border="1" hspace="5"/>
                     <!-- 자동차명 -->
                     [[${dto.carname}]]
+
+                    <!--댓글 갯수-->
+                    <span style="margin-left: 10px;color: red;"
+                          th:if="${dto.commentcount > 0}">
+                          ([[${dto.commentcount}]])
+                    </span>
                 </a>
             <td align="center">
                 <div class="box" th:style="'background-color: ' + ${dto.carcolor}">
@@ -59,7 +65,7 @@
         </tr>
     </table>
     <div th:if="${pageSize<totalCount}">
-        <button type="button" th:onclick="|location.href='@{./(more=2)}'|">More</button>
+    <button type="button" th:onclick="|location.href='@{./(more=2)}'|">More</button>
     </div>
 </div>
 </body>

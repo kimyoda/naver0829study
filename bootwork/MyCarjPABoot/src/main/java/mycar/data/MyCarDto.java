@@ -2,6 +2,7 @@ package mycar.data;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,7 @@ import java.sql.Timestamp;
 @Table(name = "mycar")
 @Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class MyCarDto {
 
