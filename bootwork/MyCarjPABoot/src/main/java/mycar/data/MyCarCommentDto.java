@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Timestamp;
 /*
@@ -27,6 +29,7 @@ public class MyCarCommentDto {
 
     @ManyToOne // 서브테이블에는 ManyToOne : 하나의 등록글에 여러개의 댓글을 달 수 있다
     @JoinColumn(name = "num")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private MyCarDto mycar; // join table 선언
 
     private String comment; // 기본 컬럼명은 comment, length 는 255가 된다(생략 시)
