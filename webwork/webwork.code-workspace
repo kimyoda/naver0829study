@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "webwork",
+			"path": "."
+		},
+		{
+			"name": "shop",
+			"path": "../../img/shop"
+		},
+		{
+			"path": "../../../baseballProject"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "webwork"
+	}
+}
