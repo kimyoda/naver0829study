@@ -24,6 +24,7 @@ import com.mysql.cj.result.Field;
 import mini.dao.MemberDao;
 import mini.dto.BoardDto;
 import mini.dto.BoardFileDto;
+import mini.service.BoardAnswerService;
 import mini.service.BoardFileService;
 import mini.service.BoardService;
 
@@ -35,6 +36,9 @@ public class BoardController {
 
    @Autowired
    private BoardFileService boardFileService;
+   
+   @Autowired
+   private BoardAnswerService answerService;
    
    @Autowired
    private MemberDao memberDao;
@@ -79,14 +83,17 @@ public class BoardController {
       //해당페이지에 보여줄 게시판 목록
       List<BoardDto> list=boardService.getList(startNum, perPage);
       //각 dto 에 첨부된 사진의 갯수 저장
-      for(BoardDto dto:list)
-      {
+      for(BoardDto dto:list) {
          int pcount=boardFileService.getPhotoByNum(dto.getNum()).size();
          //System.out.println(dto.getNum()+":"+ pcount);
          dto.setPhotocount(pcount);
+         
+         // 댓글 갯수 저장
+         int acount = answerService.getAnswerBoard(dto.getNum()).size();
+         dto.setAcount(acount);
       }
 
-      //request 에 담을 값들
+      // request 에 담을 값들
       model.addAttribute("list",list);
       model.addAttribute("totalCount",totalCount);
       model.addAttribute("totalPage",totalPage);
@@ -98,11 +105,11 @@ public class BoardController {
       return "board/boardlist";
    }
 
-   //새글일때/답글일때 모두 호출
+   // 새글일때/답글일때 모두 호출
    @GetMapping("/board/form")
-   public String form(
+   public String form (
          Model model,
-         /*새글일경우 값이 안넘어오므로 defaultValue 값이 적용된다*/
+         /* 새글일경우 값이 안넘어오므로 defaultValue 값이 적용된다*/
          @RequestParam(defaultValue = "1") int currentPage,
          @RequestParam(defaultValue = "0") int num,
          @RequestParam(defaultValue = "0") int regroup,
@@ -116,11 +123,11 @@ public class BoardController {
       model.addAttribute("restep", restep);
       model.addAttribute("relevel", relevel);
 
-      //답글일경우 제목 가져오기
+      // 답글일경우 제목 가져오기
       String subject="";
-      if(num>0)
+      if(num>0)  
          subject=boardService.getData(num).getSubject();
-
+      
       model.addAttribute("subject", subject);
 
       return "board/boardform";
@@ -147,8 +154,8 @@ public class BoardController {
 
       //일단 BoardDto 먼저 저장
       boardService.insertBoard(dto);
-      //selectKey : num 값 넘어왔는지 확인
-      System.out.println("num="+dto.getNum());
+      // selectKey : num 값 넘어왔는지 확인
+      // System.out.println("num="+dto.getNum());
 
       //사진들 업로드
       //사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다

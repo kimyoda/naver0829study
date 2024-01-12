@@ -28,10 +28,10 @@
 			list();
 		});
 		
-		//탈퇴 이벤트
+		// 탈퇴 이벤트
 		$(document).on("click",".memberdel",function(){
 			let a=confirm("해당 회원을 탈퇴시키려면 [확인]을 눌러주세요");
-			if(a){
+			if(a) {
 				let num=$(this).attr("num");
 				$.ajax({
 					type:"get",
@@ -39,22 +39,21 @@
 					url:"./delete",
 					data:{"num":num},
 					success:function(res){
-						word="";//전역변수라 마지막 검색단어를 갖고 있으므로 초기화해준다
-						list();//삭제후 전체 목록 다시 출력
+						word=""; // 전역변수라 마지막 검색단어를 갖고 있으므로 초기화해준다
+						list(); // 삭제후 전체 목록 다시 출력
 				    }
 				});
 			}
 		});
 	});
 	
-	function list()
-	{
+	function list() {
 		$.ajax({
 			type:"get",
 			dataType:"json",
 			url:"./search",
 			data:{"field":field,"word":word},
-			success:function(res){
+			success:function(res) {
 				let s="";
 				s+=
 					`
