@@ -10,9 +10,9 @@ function MainApp(props) {
   // 결과확인 버튼 이벤트
   const buttonResult = () => {
     // text로 할때는 value 값도 넣어야한다.
-    let name = nameRef.current.value;
-    let kor = korRef.current.value;
-    let eng = engRef.current.value;
+    const name = nameRef.current.value;
+    const kor = korRef.current.value;
+    const eng = engRef.current.value;
     // 숫자인지 확인 후 경고
     if (isNaN(kor)) {
       alert("국어점수는 숫자로 입력해주세요");
@@ -24,10 +24,10 @@ function MainApp(props) {
       return;
     }
     // 총점, 평균
-    let total = Number(kor) + Number(eng);
-    let avg = total / 2;
+    const total = Number(kor) + Number(eng);
+    const avg = total / 2;
 
-    let score = `
+    const score = `
       이름 : ${name}
       국어점수 : ${kor}
       영어점수 : ${eng}
