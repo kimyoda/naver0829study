@@ -25,7 +25,7 @@ const PersonForm = ({onSave}) => {
   return (
     <table className="table table-bordered" style={{width: "460px"}}>
       <tbody>
-        <tr>
+        <tr key="form">
           <th style={{width: "100px", backgroundColor: "pink"}}>이름</th>
           <td>
             <input
