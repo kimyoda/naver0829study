@@ -18,4 +18,8 @@ public class GuestDao {
     public List<GuestDto> getAllGuestDto() {
         return guestRepository.findAll(Sort.by(Sort.Direction.DESC,"guestNum"));
     }
+
+    public void deleteGuest(int guestNum) {
+        guestRepository.deleteById(guestNum);
+    }
 }

@@ -1,12 +1,13 @@
 package guest.controller;
 
 import guest.data.GuestDao;
+import guest.data.GuestDto;
 import lombok.RequiredArgsConstructor;
 import naver.storage.NcpObjectStorageService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,5 +33,29 @@ public class GuestController {
     public String uploadFile(@RequestParam("upload") MultipartFile upload) {
         photo = storageService.uploadFile(bucketName, folderName, upload);
         return photo;
+    }
+
+    @PostMapping("/guest/insert")
+    public void insert(@RequestBody GuestDto dto) {
+
+        // 미리 업로드 한 photo를 dto 에 넣기
+        dto.setPhoto(photo);
+
+        // db insert
+        guestDao.addGuest(dto);
+
+        // photo 초기화
+        photo = null;
+
+    }
+
+    @GetMapping("/guest/list")
+    public List<GuestDto> list () {
+        return guestDao.getAllGuestDto();
+    }
+
+    @DeleteMapping("/guest/delete")
+    public void delete(@RequestParam("guestNum") int guestNum) {
+        guestDao.deleteGuest(guestNum);
     }
 }
