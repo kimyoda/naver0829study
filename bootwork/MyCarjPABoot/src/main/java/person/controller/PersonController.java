@@ -34,4 +34,20 @@
             System.out.println("delete>>" + num);
             personDao.deletePerson(num);
         }
+
+        // dto 반환
+        @GetMapping("/person/select")
+        public PersonDto select(@RequestParam("personNum") int personNum) {
+            System.out.println("select>>" + personNum);
+            return  personDao.getSelectData(personNum);
+        }
+
+        // 수정
+        @PostMapping("/person/update")
+        public void update(@RequestBody PersonDto dto) {
+            System.out.println("update>>> " + dto);
+            personDao.updatePerson(dto);
+        }
+
+
     }
