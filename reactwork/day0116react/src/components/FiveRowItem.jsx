@@ -23,7 +23,6 @@ function FiveRowItem({row, idx, onDelete}) {
         {row.foodDate.toLocaleDateString("ko-KR")}
       </td>
       <td valign="middle">
-        삭제
         <DeleteForeverOutlined
           style={{cursor: "pointer"}}
           onClick={() => {
