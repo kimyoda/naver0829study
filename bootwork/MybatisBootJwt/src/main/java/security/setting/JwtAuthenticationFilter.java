@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
 
     log.info(request.getRequestURI());
 
@@ -32,11 +32,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
           authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); //기본적으로 제공한 details 세팅
 
           SecurityContextHolder.getContext()
-              .setAuthentication(authentication); //세션에서 계속 사용하기 위해 securityContext에 Authentication 등록
+                  .setAuthentication(authentication); //세션에서 계속 사용하기 위해 securityContext에 Authentication 등록
         } else {
           if (StringUtils.isEmpty(jwt)) {
             //request.setAttribute("unauthorization", "401 인증키 없음.");
-        	System.out.println("401 인증키 없음.");
+            System.out.println("401 인증키 없음.");
           }
 
           if (JwtTokenProvider.validateToken(jwt)) {

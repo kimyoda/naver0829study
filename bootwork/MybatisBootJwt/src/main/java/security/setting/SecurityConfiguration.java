@@ -59,13 +59,13 @@ public class SecurityConfiguration {
                             .requestMatchers("/images/**").permitAll()
                             .requestMatchers("/member/**").permitAll()
                             .requestMatchers("/login/auth").permitAll()
-
+                            .requestMatchers("/board/**").permitAll()
                             //이외의 요청은 인증된 사용자만 사용자만 사용가능
                             .anyRequest().authenticated();
                 })
                 .headers(headers -> headers.frameOptions().disable());
-//                .csrf(csrf -> csrf
-//                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));
+//		.csrf(csrf -> csrf
+//				.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));
 
         return http.build();
     }

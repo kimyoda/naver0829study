@@ -38,6 +38,8 @@ public class LoginController {
             // 입력한 비번과 db의 암호화된 비번이 맞을 경우
             // result에는 success로 보낸다
             // 근데 비번이 틀린경우는 result dp "nopass"
+            String myid = dto.getMyid();//로그인시 입력한 아이디
+
             String pass = dto.getPass(); // 로그인 시 입력한 비번
             isPasswordCorrect = passwordEncoder.matches(pass, dbPass);
         }
