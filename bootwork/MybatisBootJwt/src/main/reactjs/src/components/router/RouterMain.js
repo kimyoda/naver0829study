@@ -7,6 +7,8 @@ import MemberList from "../member/MemberList";
 import MemberForm from "../member/MemberForm";
 import BoardList from "../board/BoardList";
 import LogiForm from "../login/LogiForm";
+import BoardForm from "../board/BoardForm";
+import BoardDetail from "../board/BoardDetail";
 
 const RouterMain = () => {
   return (
@@ -22,6 +24,9 @@ const RouterMain = () => {
           </Route>
           <Route path="/board">
             <Route path="list" element={<BoardList />} />
+            <Route path="list/:currentPage" element={<BoardList />} />
+            <Route path="form" element={<BoardForm />} />
+            <Route path="select/:num" element={<BoardDetail />} />
           </Route>
           <Route path="/login" element={<LogiForm />} />
         </Routes>

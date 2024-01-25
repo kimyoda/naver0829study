@@ -2,15 +2,16 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Swal from "sweetalert2";
 
-const LogiForm = () => {
+const LoginForm = () => {
   const [myid, setMyid] = useState("");
   const [pass, setPass] = useState("");
   const [token, setToken] = useState(null);
 
   useEffect(() => {
     let session_token = sessionStorage.token;
+    console.log(session_token);
     setToken(session_token);
-  }, []);
+  }, []); //처음 시작시 한번만 호출
 
   const buttonLoginEvent = () => {
     axios.post("/login/auth", {myid, pass}).then((res) => {
@@ -19,13 +20,16 @@ const LogiForm = () => {
       } else if (res.data.result === "nopass") {
         Swal.fire("비밀번호가 맞지 않습니다");
       } else {
-        // 토큰을 얻어서 세션 스토리지에 token 이라는 이름으로 저장한다.
+        //토큰을 얻어서 세션 스토리지에 token 이라는 이름으로 저장한다
         sessionStorage.token = res.data.token;
+        //아이디도 세션 스토리지에 저장
+        sessionStorage.myid = myid;
+
         setToken(res.data.token);
+        window.location.reload();
       }
     });
   };
-
   return (
     <div>
       {token == null ? (
@@ -75,10 +79,12 @@ const LogiForm = () => {
         </div>
       ) : (
         <div>
-          <h4 className="alert alert-danger">로그인 폼</h4>
+          <h4 className="alert alert-danger">
+            {sessionStorage.myid}님이 로그인중입니다
+          </h4>
           <br />
           <br />
-          <img alt="" src={require(`../../image/s5.JPG`)} />
+          <img alt="" src={require("../../image/05.png")} />
           <br />
           <br />
           <button
@@ -89,6 +95,7 @@ const LogiForm = () => {
               setToken(null);
               setMyid("");
               setPass("");
+              window.location.reload();
             }}
           >
             로그아웃
@@ -99,4 +106,4 @@ const LogiForm = () => {
   );
 };
 
-export default LogiForm;
+export default LoginForm;
